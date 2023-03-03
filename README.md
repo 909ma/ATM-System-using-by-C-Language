@@ -7,6 +7,6 @@
 [김신혁](https://github.com/909ma)  
 [서정빈](https://github.com/jjangbin)  
 [안교석](https://github.com/gsa5000)  
-[안효정](https://github.com/AnHyojeongg) 
-[장대건](https://github.com/Jangdaegun) 
+[안효정](https://github.com/AnHyojeongg)  
+[장대건](https://github.com/Jangdaegun)  
 [최은지](https://github.com/EunjiCh0i) 
