@@ -15,14 +15,15 @@
   6) CACd (ClientAccountCode) : 고객의 계좌번호
   7) CACs (ClientAccountCash) : 고객의 계좌 보유 금액
   8) CAPW (ClientAccountPW) : 고객의 계좌 비밀번호
-  9) CAH (ClientAccountHistory) : 고객의 계좌 거래 내역
-  10) CAOD (ClientAccountOpenDate) : 계좌 개설 날짜
+  9) CAOD (ClientAccountOpenDate) : 계좌 개설 날짜
+  10) CAH (ClientAccountHistory) : 고객의 계좌 거래 내역
 
 2. 고객 데이터 저장 양식
-  파일 이름 : BC + BN + CCd + CNm .txt
-  파일 내용 
-    CCC1 + CAC1 + CACd1 + CACs1 + CAPW1
-    CCC2 + CAC2 + CACd2 + CACs2 + CAPW2
-    CCC3 + CAC3 + CACd3 + CACs3 + CAPW3
-    etc
+  파일 두 개로 나누어 저장
+  1) 계좌 정보
+  2) 거래 내역 정보
   --> 보안 문제가 있음
+
+3. 각자 목표 할당 완료.
+  자세한 것은 요구사항 정의서 참고.
+  개인 할당 서비스에서 구현할 기능의 인터페이스와 순서도 그리기.
