@@ -1,0 +1,26 @@
+프로젝트 수행 기간
+2023.03.02 ~ 2023.03.20
+
+조장 : 김신혁
+팀원 : 서정빈 안교석 안효정 장대건 최은지
+
+제출 필수 파일 : ppt(실행결과까지 캡쳐해서 ppt에 포함시킬 것), 소스파일, 요구사항 정의서, 회의록까지 네 가지.
+
+1. 프로젝트에서 사용할 변수명과 내용
+  1) BC (BankCode) : 은행 고유 코드
+  2) BN (BankName) : 은행 이름
+  3) CCd (ClienCode) : 고객 고유 코드
+  4) CNm (ClientName) : 고객 명의
+  5) CCC (ClientCardCode) : 고객의 현금카드 번호
+  6) CACd (ClientAccountCode) : 고객의 계좌번호
+  7) CACs (ClientAccountCash) : 고객의 계좌 보유 금액
+  8) CAPW (ClientAccountPW)고객의 계과 비밀번호
+
+2. 고객 데이터 저장 양식
+  파일 이름 : BC + BN + CCd + CNm .txt
+  파일 내용 
+    CCC1 + CAC1 + CACd1 + CACs1 + CAPW1
+    CCC2 + CAC2 + CACd2 + CACs2 + CAPW2
+    CCC3 + CAC3 + CACd3 + CACs3 + CAPW3
+    etc
+  --> 보안 문제가 있음
