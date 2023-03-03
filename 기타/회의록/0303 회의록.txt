@@ -14,7 +14,9 @@
   5) CCC (ClientCardCode) : 고객의 현금카드 번호
   6) CACd (ClientAccountCode) : 고객의 계좌번호
   7) CACs (ClientAccountCash) : 고객의 계좌 보유 금액
-  8) CAPW (ClientAccountPW)고객의 계과 비밀번호
+  8) CAPW (ClientAccountPW) : 고객의 계좌 비밀번호
+  9) CAH (ClientAccountHistory) : 고객의 계좌 거래 내역
+  10) CAOD (ClientAccountOpenDate) : 계좌 개설 날짜
 
 2. 고객 데이터 저장 양식
   파일 이름 : BC + BN + CCd + CNm .txt
