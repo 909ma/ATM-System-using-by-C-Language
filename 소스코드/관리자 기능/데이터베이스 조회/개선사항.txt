@@ -1,0 +1,2 @@
+CardNumber과 AccountNumber을 int로 했더니 오버플로우 발생하는 듯 합니다.
+자릿수를 적게 잡아 가정을 한 뒤에 코딩을 해야겠습니다
