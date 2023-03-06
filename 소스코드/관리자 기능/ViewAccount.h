@@ -52,9 +52,9 @@ int ViewAccount(int a) {
 
     read_csv_file("people.csv", people, a+1);//a의 인원수를 조회 
 
-        printf("No.  BankName  BankCode  ClientCode  ClientName  CardNumber  AccountNumber   NowMoney  AccountPW  AccountDate\n");
+    printf("No.  BankName  BankCode  ClientCode  ClientName  CardNumber  AccountNumber   NowMoney  AccountPW  AccountDate\n");
     for (int i = 1; i < a + 1; i++) {
-        printf("%3d  %8s  %8d  %10d  %10s  %10d  %13d  %9d  %9d  %11d\n", i,people[i].BankName, people[i].BankCode, people[i].ClientCode, people[i].ClientName, people[i].CardNumber, people[i].AccountNumber, people[i].NowMoney, people[i].AccountPW, people[i].AccountDate);
+        printf("%3d  %8s  %8d  %10d  %10s  %10d  %13d  %9d       %04d  %11d\n", i,people[i].BankName, people[i].BankCode, people[i].ClientCode, people[i].ClientName, people[i].CardNumber, people[i].AccountNumber, people[i].NowMoney, people[i].AccountPW, people[i].AccountDate);
         if(i%10==0)
             printf("\nNo.  BankName  BankCode  ClientCode  ClientName  CardNumber  AccountNumber   NowMoney  AccountPW  AccountDate\n");
     }
