@@ -46,6 +46,6 @@ RE:
 		printf("다시 입력해주세요\n");
 		goto RE;
 	}
-
+ 
 	return 0;
 }
