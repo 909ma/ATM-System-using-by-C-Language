@@ -2,28 +2,16 @@
 #include<conio.h>
 #include"ViewAccount.h"
 #include"withdraw.h"
-
-void showMenu()
-{
-
-	printf("\n\n======[    ¸Ş´º    ]=======\n\n");
-	printf("1.	°èÁÂ Á¶È¸\n\n");
-	printf("2.	°èÁÂ ÀÔ±İ\n\n");
-	printf("3.	°èÁÂ Ãâ±İ\n\n");
-	printf("4.	°èÁÂ ÀÌÃ¼\n\n");
-	printf("5.	°èÁÂ ³³ºÎ\n\n");
-	printf("6.	ºÎ°¡ ¼­ºñ½º\n\n");
-	printf("7.	»ç¿ë Á¾·á\n\n");
-
-}
+#include"Main.h"
 
 int main()
 {
 	int MenuNum;
 	Person* people = malloc(sizeof(Person) * 100);
+RESHOW:
 	showMenu();
 RE:
-	printf("¿øÇÏ´Â ±â´É ¼±ÅÃ : ");
+	printf("ì›í•˜ëŠ” ê¸°ëŠ¥ ì„ íƒ : ");
 	scanf("%d", &MenuNum);
 	switch (MenuNum)
 	{
@@ -34,6 +22,16 @@ RE:
 	case 3:
 		printf("\n");
 		withdraw("people.csv", people);
+		printf("1. ì´ì „ë©”ë‰´ ëŒì•„ê°€ê¸°\t 2. ì‚¬ìš© ì¢…ë£Œ\n\n");
+		int menuSelect;
+		printf("ì„ íƒ : ");
+		scanf("%d", &menuSelect);
+		if (menuSelect == 1)
+		{
+			goto RESHOW;
+		}
+		else
+			printf("ì‚¬ìš©ì¢…ë£Œ\n");
 		break;
 	case 4:
 		break;
@@ -42,10 +40,10 @@ RE:
 	case 6:
 		break;
 	case 7:
-		printf("»ç¿ëÀ» Á¾·áÇÕ´Ï´Ù\n");
+		printf("ì‚¬ìš©ì„ ì¢…ë£Œí•©ë‹ˆë‹¤\n");
 		break;
 	default:
-		printf("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+		printf("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
 		goto RE;
 	}
 
