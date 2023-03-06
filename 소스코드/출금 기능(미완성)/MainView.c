@@ -28,6 +28,7 @@ RE:
 		scanf("%d", &menuSelect);
 		if (menuSelect == 1)
 		{
+			system("cls");
 			goto RESHOW;
 		}
 		else
