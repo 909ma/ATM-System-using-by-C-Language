@@ -52,8 +52,11 @@ int ViewAccount(int a) {
 
     read_csv_file("people.csv", people, a+1);//a의 인원수를 조회 
 
-    for (int i = 0; i < a+1; i++) {
-        printf("Bank Name: %s, Bank Code: %d, Clinet Code: %d, ClientName: %s, CardNumber: %d, AccountNumber: %d, NowMoney: %d, AccountPW: %d, AccountDate: %d\n", people[i].BankName, people[i].BankCode, people[i].ClientCode,people[i].ClientName,people[i].CardNumber,people[i].AccountNumber,people[i].NowMoney,people[i].AccountPW,people[i].AccountDate);
+        printf("No.  BankName  BankCode  ClientCode  ClientName  CardNumber  AccountNumber   NowMoney  AccountPW  AccountDate\n");
+    for (int i = 1; i < a + 1; i++) {
+        printf("%3d  %8s  %8d  %10d  %10s  %10d  %13d  %9d  %9d  %11d\n", i,people[i].BankName, people[i].BankCode, people[i].ClientCode, people[i].ClientName, people[i].CardNumber, people[i].AccountNumber, people[i].NowMoney, people[i].AccountPW, people[i].AccountDate);
+        if(i%10==0)
+            printf("\nNo.  BankName  BankCode  ClientCode  ClientName  CardNumber  AccountNumber   NowMoney  AccountPW  AccountDate\n");
     }
     free(people);// 동적 할당된 메모리 해제
 
