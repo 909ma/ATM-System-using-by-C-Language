@@ -2,9 +2,10 @@
 #include<conio.h>
 #include"ViewAccount.h"
 #include"CreatAccount.h"
-#include"withdraw.h"
+#include"ibchulguem.h"
+#include"CloseAccount.h"
+#include"DeleteAccount.h"
 #include"Menu.h"
-
 void admin()
 {
 	int MenuNum;
@@ -18,8 +19,8 @@ RE:
 	switch (MenuNum)
 	{
 	case 1:
-		ViewAccount(90);		
-		printf("1. 이전메뉴 돌아가기\t 2. 사용 종료\n\n");
+		ViewAccount(10);
+		printf("\n1. 이전메뉴 돌아가기\t 2. 사용 종료\n\n");
 		printf("선택 : ");
 		scanf("%d", &menuSelect);
 		if (menuSelect == 1)
@@ -32,7 +33,7 @@ RE:
 		break;
 	case 2:
 		CreatAccount();
-		printf("1. 이전메뉴 돌아가기\t 2. 사용 종료\n\n");
+		printf("\n1. 이전메뉴 돌아가기\t 2. 사용 종료\n\n");
 		printf("선택 : ");
 		scanf("%d", &menuSelect);
 		if (menuSelect == 1)
@@ -44,6 +45,17 @@ RE:
 			printf("사용종료\n");
 		break;
 	case 3:
+		CloseAccount();
+		printf("\n1. 이전메뉴 돌아가기\t 2. 사용 종료\n\n");
+		printf("선택 : ");
+		scanf("%d", &menuSelect);
+		if (menuSelect == 1)
+		{
+			system("cls");
+			goto RESHOW;
+		}
+		else
+			printf("사용종료\n");
 		break;
 	case 4:
 		printf("사용을 종료합니다\n");
@@ -52,10 +64,12 @@ RE:
 		printf("다시 입력해주세요\n");
 		goto RE;
 	}
+
 }
 int main()
 {
 	int MenuNum;
+	int menuSelect;
 	Person* people = malloc(sizeof(Person) * 100);
 RESHOW:
 	showMenu();
@@ -67,12 +81,23 @@ RE:
 	case 1:
 		break;
 	case 2:
+		printf("\n");
+		deposit("people.csv", people);
+		printf("\n1. 이전메뉴 돌아가기\t 2. 사용 종료\n\n");
+		printf("선택 : ");
+		scanf("%d", &menuSelect);
+		if (menuSelect == 1)
+		{
+			system("cls");
+			goto RESHOW;
+		}
+		else
+			printf("사용종료\n");
 		break;
 	case 3:
 		printf("\n");
 		withdraw("people.csv", people);
-		printf("1. 이전메뉴 돌아가기\t 2. 사용 종료\n\n");
-		int menuSelect;
+		printf("\n1. 이전메뉴 돌아가기\t 2. 사용 종료\n\n");
 		printf("선택 : ");
 		scanf("%d", &menuSelect);
 		if (menuSelect == 1)

@@ -27,6 +27,8 @@ void deposit_func(char* filename, Person* people, int max)
 {
 	int num;
 	int depositMoney;
+	int found = 0;
+	REDEP:
 	printf("\n입금할 계좌번호 입력: ");
 	scanf("%d", &num);
 	FILE* fp = fopen(filename, "r");    // 파일을 읽기 모드로 열기
@@ -64,6 +66,7 @@ void deposit_func(char* filename, Person* people, int max)
 
 			if (AccountNumber == num) // 고객의 계좌번호와 입력한 계좌번호가 일치한 경우
 			{
+				found = 1;
 			RE:
 				printf("\n입금하실 금액을 입력하시오 : ");
 				scanf("%d", &depositMoney);
@@ -75,8 +78,11 @@ void deposit_func(char* filename, Person* people, int max)
 				people[count].NowMoney = NowMoney;
 			}
 			count++;
-			if (max == count)
-				break;
+			
+		}
+		if (!found) {
+			printf("\n입력한 계좌번호가 존재하지 않습니다.\n");
+			goto REDEP;
 		}
 	}
 
@@ -86,6 +92,8 @@ void withdraw_func(char* filename, Person* people, int max)
 {
 	int num;
 	int withdrawMoney;
+	int found = 0;
+	REWITH:
 	printf("\n출금할 계좌번호 입력: ");
 	scanf("%d", &num);
 	FILE* fp = fopen(filename, "r");    // 파일을 읽기 모드로 열기
@@ -123,6 +131,7 @@ void withdraw_func(char* filename, Person* people, int max)
 
 			if (AccountNumber == num) // 고객의 계좌번호와 입력한 계좌번호가 일치한 경우
 			{
+				found = 1;
 				int cnt = 0;
 				while (cnt < 3)
 				{
@@ -165,8 +174,12 @@ void withdraw_func(char* filename, Person* people, int max)
 				}
 			}
 			count++;
-			if (max == count)
-				break;
+			/*if (max == count)
+				break;*/
+		}
+		if (!found) {
+			printf("\n입력한 계좌번호가 존재하지 않습니다.\n");
+			goto REWITH;
 		}
 	}
 
