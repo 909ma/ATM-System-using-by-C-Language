@@ -2,8 +2,8 @@
 #include<stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-void SaveData(char* filename, Person* people, int max) //Ãâ±İ ÈÄ ¼öÁ¤µÈ ÀÜ¾× Á¤º¸·Î ÀçÀúÀå
+ 
+void SaveData(char* filename, Person* people, int max) //ì¶œê¸ˆ í›„ ìˆ˜ì •ëœ ì”ì•¡ ì •ë³´ë¡œ ì¬ì €ì¥
 {
 	FILE* fp = fopen(filename, "w");
 	if (fp == NULL) {
@@ -19,7 +19,7 @@ void SaveData(char* filename, Person* people, int max) //Ãâ±İ ÈÄ ¼öÁ¤µÈ ÀÜ¾× Á¤º
 			fprintf(fp, "%s,%d,%d,%s,%d,%d,%d,%d,%d\n", people->BankName, people->BankCode, people->ClientCode, people->ClientName, people->CardNumber, people->AccountNumber, people->NowMoney, people->AccountPW, people->AccountDate);
 		}
 	}
-	printf("ÀúÀå¿Ï·á\n\n");
+	printf("ì €ì¥ì™„ë£Œ\n\n");
 
 	fclose(fp);
 }
@@ -29,30 +29,30 @@ void deposit_func(char* filename, Person* people, int max)
 	int depositMoney;
 	int found = 0;
 	REDEP:
-	printf("\nÀÔ±İÇÒ °èÁÂ¹øÈ£ ÀÔ·Â: ");
+	printf("\nì…ê¸ˆí•  ê³„ì¢Œë²ˆí˜¸ ì…ë ¥: ");
 	scanf("%d", &num);
-	FILE* fp = fopen(filename, "r");    // ÆÄÀÏÀ» ÀĞ±â ¸ğµå·Î ¿­±â
+	FILE* fp = fopen(filename, "r");    // íŒŒì¼ì„ ì½ê¸° ëª¨ë“œë¡œ ì—´ê¸°
 	if (fp == NULL) {
 		printf("File open error!\n");
 		return;
 	}
 
-	char buffer[1024];    // ÇÑ ÁÙ¾¿ ÀĞ¾î¿Ã ¹öÆÛ
-	int count = 0;        // ÀĞ¾î¿Â »ç¶÷ ¼ö
+	char buffer[1024];    // í•œ ì¤„ì”© ì½ì–´ì˜¬ ë²„í¼
+	int count = 0;        // ì½ì–´ì˜¨ ì‚¬ëŒ ìˆ˜
 	if (fgets(buffer, 1024, fp))
 	{
 
-		while (fgets(buffer, 1024, fp)) {    // ÇÑ ÁÙ¾¿ ÀĞ¾î¿À±â
+		while (fgets(buffer, 1024, fp)) {    // í•œ ì¤„ì”© ì½ì–´ì˜¤ê¸°
 
-			char* BankName = strtok(buffer, ",");                    // BankName ÀĞ¾î¿À±â
-			int BankCode = atoi(strtok(NULL, ","));                 // BankCode ÀĞ¾î¿À±â
-			int ClientCode = atoi(strtok(NULL, ","));              // ClientCode ÀĞ¾î¿À±â
-			char* ClientName = strtok(NULL, ",");                 // ClientName ÀĞ¾î¿À±â
-			int CardNumber = atoi(strtok(NULL, ","));            // CardNumber ÀĞ¾î¿À±â
-			int AccountNumber = atoi(strtok(NULL, ","));        // AccountNumber ÀĞ¾î¿À±â
-			int NowMoney = atoi(strtok(NULL, ","));            // NowMoney ÀĞ¾î¿À±â
-			int AccountPW = atoi(strtok(NULL, ","));          // AccountPW ÀĞ¾î¿À±â
-			int AccountDate = atoi(strtok(NULL, ","));       // AccountDate ÀĞ¾î¿À±â
+			char* BankName = strtok(buffer, ",");                    // BankName ì½ì–´ì˜¤ê¸°
+			int BankCode = atoi(strtok(NULL, ","));                 // BankCode ì½ì–´ì˜¤ê¸°
+			int ClientCode = atoi(strtok(NULL, ","));              // ClientCode ì½ì–´ì˜¤ê¸°
+			char* ClientName = strtok(NULL, ",");                 // ClientName ì½ì–´ì˜¤ê¸°
+			int CardNumber = atoi(strtok(NULL, ","));            // CardNumber ì½ì–´ì˜¤ê¸°
+			int AccountNumber = atoi(strtok(NULL, ","));        // AccountNumber ì½ì–´ì˜¤ê¸°
+			int NowMoney = atoi(strtok(NULL, ","));            // NowMoney ì½ì–´ì˜¤ê¸°
+			int AccountPW = atoi(strtok(NULL, ","));          // AccountPW ì½ì–´ì˜¤ê¸°
+			int AccountDate = atoi(strtok(NULL, ","));       // AccountDate ì½ì–´ì˜¤ê¸°
 
 			strcpy(people[count].BankName, BankName);
 			people[count].BankCode = BankCode;
@@ -64,29 +64,29 @@ void deposit_func(char* filename, Person* people, int max)
 			people[count].AccountPW = AccountPW;
 			people[count].AccountDate = AccountDate;
 
-			if (AccountNumber == num) // °í°´ÀÇ °èÁÂ¹øÈ£¿Í ÀÔ·ÂÇÑ °èÁÂ¹øÈ£°¡ ÀÏÄ¡ÇÑ °æ¿ì
+			if (AccountNumber == num) // ê³ ê°ì˜ ê³„ì¢Œë²ˆí˜¸ì™€ ì…ë ¥í•œ ê³„ì¢Œë²ˆí˜¸ê°€ ì¼ì¹˜í•œ ê²½ìš°
 			{
 				found = 1;
 			RE:
-				printf("\nÀÔ±İÇÏ½Ç ±İ¾×À» ÀÔ·ÂÇÏ½Ã¿À : ");
+				printf("\nì…ê¸ˆí•˜ì‹¤ ê¸ˆì•¡ì„ ì…ë ¥í•˜ì‹œì˜¤ : ");
 				scanf("%d", &depositMoney);
 
 				if (voicefishing() == 1)
 					exit(0);
 				NowMoney += depositMoney;
-				printf("\n<ÀÔ±İ ÈÄ ÀÜ¾× : %d¿ø>\n", NowMoney);
+				printf("\n<ì…ê¸ˆ í›„ ì”ì•¡ : %dì›>\n", NowMoney);
 				people[count].NowMoney = NowMoney;
 			}
 			count++;
 			
 		}
 		if (!found) {
-			printf("\nÀÔ·ÂÇÑ °èÁÂ¹øÈ£°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n");
+			printf("\nì…ë ¥í•œ ê³„ì¢Œë²ˆí˜¸ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n");
 			goto REDEP;
 		}
 	}
 
-	fclose(fp);    // ÆÄÀÏ ´İ±â
+	fclose(fp);    // íŒŒì¼ ë‹«ê¸°
 }
 void withdraw_func(char* filename, Person* people, int max)
 {
@@ -94,30 +94,30 @@ void withdraw_func(char* filename, Person* people, int max)
 	int withdrawMoney;
 	int found = 0;
 	REWITH:
-	printf("\nÃâ±İÇÒ °èÁÂ¹øÈ£ ÀÔ·Â: ");
+	printf("\nì¶œê¸ˆí•  ê³„ì¢Œë²ˆí˜¸ ì…ë ¥: ");
 	scanf("%d", &num);
-	FILE* fp = fopen(filename, "r");    // ÆÄÀÏÀ» ÀĞ±â ¸ğµå·Î ¿­±â
+	FILE* fp = fopen(filename, "r");    // íŒŒì¼ì„ ì½ê¸° ëª¨ë“œë¡œ ì—´ê¸°
 	if (fp == NULL) {
 		printf("File open error!\n");
 		return;
 	}
 
-	char buffer[1024];    // ÇÑ ÁÙ¾¿ ÀĞ¾î¿Ã ¹öÆÛ
-	int count = 0;        // ÀĞ¾î¿Â »ç¶÷ ¼ö
+	char buffer[1024];    // í•œ ì¤„ì”© ì½ì–´ì˜¬ ë²„í¼
+	int count = 0;        // ì½ì–´ì˜¨ ì‚¬ëŒ ìˆ˜
 	if (fgets(buffer, 1024, fp))
 	{
 
-		while (fgets(buffer, 1024, fp)) {    // ÇÑ ÁÙ¾¿ ÀĞ¾î¿À±â
+		while (fgets(buffer, 1024, fp)) {    // í•œ ì¤„ì”© ì½ì–´ì˜¤ê¸°
 
-			char* BankName = strtok(buffer, ",");                    // BankName ÀĞ¾î¿À±â
-			int BankCode = atoi(strtok(NULL, ","));                 // BankCode ÀĞ¾î¿À±â
-			int ClientCode = atoi(strtok(NULL, ","));              // ClientCode ÀĞ¾î¿À±â
-			char* ClientName = strtok(NULL, ",");                 // ClientName ÀĞ¾î¿À±â
-			int CardNumber = atoi(strtok(NULL, ","));            // CardNumber ÀĞ¾î¿À±â
-			int AccountNumber = atoi(strtok(NULL, ","));        // AccountNumber ÀĞ¾î¿À±â
-			int NowMoney = atoi(strtok(NULL, ","));            // NowMoney ÀĞ¾î¿À±â
-			int AccountPW = atoi(strtok(NULL, ","));          // AccountPW ÀĞ¾î¿À±â
-			int AccountDate = atoi(strtok(NULL, ","));       // AccountDate ÀĞ¾î¿À±â
+			char* BankName = strtok(buffer, ",");                    // BankName ì½ì–´ì˜¤ê¸°
+			int BankCode = atoi(strtok(NULL, ","));                 // BankCode ì½ì–´ì˜¤ê¸°
+			int ClientCode = atoi(strtok(NULL, ","));              // ClientCode ì½ì–´ì˜¤ê¸°
+			char* ClientName = strtok(NULL, ",");                 // ClientName ì½ì–´ì˜¤ê¸°
+			int CardNumber = atoi(strtok(NULL, ","));            // CardNumber ì½ì–´ì˜¤ê¸°
+			int AccountNumber = atoi(strtok(NULL, ","));        // AccountNumber ì½ì–´ì˜¤ê¸°
+			int NowMoney = atoi(strtok(NULL, ","));            // NowMoney ì½ì–´ì˜¤ê¸°
+			int AccountPW = atoi(strtok(NULL, ","));          // AccountPW ì½ì–´ì˜¤ê¸°
+			int AccountDate = atoi(strtok(NULL, ","));       // AccountDate ì½ì–´ì˜¤ê¸°
 
 			strcpy(people[count].BankName, BankName);
 			people[count].BankCode = BankCode;
@@ -129,14 +129,14 @@ void withdraw_func(char* filename, Person* people, int max)
 			people[count].AccountPW = AccountPW;
 			people[count].AccountDate = AccountDate;
 
-			if (AccountNumber == num) // °í°´ÀÇ °èÁÂ¹øÈ£¿Í ÀÔ·ÂÇÑ °èÁÂ¹øÈ£°¡ ÀÏÄ¡ÇÑ °æ¿ì
+			if (AccountNumber == num) // ê³ ê°ì˜ ê³„ì¢Œë²ˆí˜¸ì™€ ì…ë ¥í•œ ê³„ì¢Œë²ˆí˜¸ê°€ ì¼ì¹˜í•œ ê²½ìš°
 			{
 				found = 1;
 				int cnt = 0;
 				while (cnt < 3)
 				{
 					int pw;
-					printf("\nºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À : ", cnt);
+					printf("\në¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ : ", cnt);
 					scanf("%d", &pw);
 
 					if (AccountPW == pw)
@@ -145,31 +145,31 @@ void withdraw_func(char* filename, Person* people, int max)
 					{
 						cnt++;
 						if (cnt < 3)
-							printf("\nºñ¹Ğ¹øÈ£°¡ Æ²·Ç½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä(%dÈ¸ ¿À·ù)\n", cnt);
+							printf("\në¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ·ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”(%díšŒ ì˜¤ë¥˜)\n", cnt);
 						else
 							break;
 					}
 				}
 				if (cnt == 3)
 				{
-					printf("\nºñ¹Ğ¹øÈ£¸¦ 3È¸ÀÌ»ó Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.\n");
+					printf("\në¹„ë°€ë²ˆí˜¸ë¥¼ 3íšŒì´ìƒ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
 					exit(0);
 				}
 
 			RE:
-				printf("\nÃâ±İÇÏ½Ç ±İ¾×À» ÀÔ·ÂÇÏ½Ã¿À : ");
+				printf("\nì¶œê¸ˆí•˜ì‹¤ ê¸ˆì•¡ì„ ì…ë ¥í•˜ì‹œì˜¤ : ");
 				scanf("%d", &withdrawMoney);
 				if (NowMoney >= withdrawMoney)
 				{
 					if (voicefishing() == 1)
 						exit(0);
 					NowMoney -= withdrawMoney;
-					printf("\n<Ãâ±İ ÈÄ ÀÜ¾× : %d¿ø>\n", NowMoney);
+					printf("\n<ì¶œê¸ˆ í›„ ì”ì•¡ : %dì›>\n", NowMoney);
 					people[count].NowMoney = NowMoney;
 				}
-				else	//Ãâ±İ¾×ÀÌ ÀÜ¾×º¸´Ù ÀûÀº °æ¿ì
+				else	//ì¶œê¸ˆì•¡ì´ ì”ì•¡ë³´ë‹¤ ì ì€ ê²½ìš°
 				{
-					printf("ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù. Ãâ±İÇÏ½Ç ±İ¾×À» ´Ù½Ã ¼³Á¤ÇØÁÖ¼¼¿ä.\n");
+					printf("ì”ì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤. ì¶œê¸ˆí•˜ì‹¤ ê¸ˆì•¡ì„ ë‹¤ì‹œ ì„¤ì •í•´ì£¼ì„¸ìš”.\n");
 					goto RE;
 				}
 			}
@@ -178,14 +178,14 @@ void withdraw_func(char* filename, Person* people, int max)
 				break;*/
 		}
 		if (!found) {
-			printf("\nÀÔ·ÂÇÑ °èÁÂ¹øÈ£°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n");
+			printf("\nì…ë ¥í•œ ê³„ì¢Œë²ˆí˜¸ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n");
 			goto REWITH;
 		}
 	}
 
-	fclose(fp);    // ÆÄÀÏ ´İ±â
+	fclose(fp);    // íŒŒì¼ ë‹«ê¸°
 }
-int getTotalLine(char* filename) { // csvÆÄÀÏÀÇ ÃÑ ¶óÀÎ ¼ö¸¦ ¹Ş´Â ÄÚµå
+int getTotalLine(char* filename) { // csvíŒŒì¼ì˜ ì´ ë¼ì¸ ìˆ˜ë¥¼ ë°›ëŠ” ì½”ë“œ
 	FILE* fp;
 	int line = 0;
 	char c;
@@ -199,11 +199,11 @@ int voicefishing()
 {
 	int answer;
 ReFishing:
-	printf("\n\n\n\n¡Ø¡Ø¡Ø¡Ø¡Ø¡Øº¸ÀÌ½ºÇÇ½Ì ÇÇÇØ¿¹¹æ ¾È³»¡Ø¡Ø¡Ø¡Ø¡Ø¡Ø\n\n");
-	printf("°ËÂû, °æÂû, ±İÀ¶°¨µ¶¿øÀÌ³ª ¸ğ¸£´Â »ç¶÷ÀÌ ÀüÈ­·Î\n");
-	printf("Ãâ±İ ¹× ÀÌÃ¼¸¦ ¿äÃ»ÇÏ¼Ì½À´Ï±î?\n\n\n");
-	printf("1. ¿¹\t\t 2. ¾Æ´Ï¿À\n");
-	printf("\n¼±ÅÃ : ");
+	printf("\n\n\n\nâ€»â€»â€»â€»â€»â€»ë³´ì´ìŠ¤í”¼ì‹± í”¼í•´ì˜ˆë°© ì•ˆë‚´â€»â€»â€»â€»â€»â€»\n\n");
+	printf("ê²€ì°°, ê²½ì°°, ê¸ˆìœµê°ë…ì›ì´ë‚˜ ëª¨ë¥´ëŠ” ì‚¬ëŒì´ ì „í™”ë¡œ\n");
+	printf("ì¶œê¸ˆ ë° ì´ì²´ë¥¼ ìš”ì²­í•˜ì…¨ìŠµë‹ˆê¹Œ?\n\n\n");
+	printf("1. ì˜ˆ\t\t 2. ì•„ë‹ˆì˜¤\n");
+	printf("\nì„ íƒ : ");
 	scanf_s("%d", &answer);
 	if (answer == 1)
 		return 1;
@@ -211,7 +211,7 @@ ReFishing:
 		return 2;
 	else
 	{
-		printf("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä\n");
+		printf("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”\n");
 		goto ReFishing;
 	}
 
