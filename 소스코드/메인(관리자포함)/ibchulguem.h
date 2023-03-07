@@ -5,7 +5,7 @@
 
 void SaveData(char* filename, Person* people, int max) //출금 후 수정된 잔액 정보로 재저장
 {
-	FILE* fp = fopen(filename, "w");   
+	FILE* fp = fopen(filename, "w");
 	if (fp == NULL) {
 		printf("File open error!\n");
 		return;
@@ -14,13 +14,13 @@ void SaveData(char* filename, Person* people, int max) //출금 후 수정된 잔액 정�
 	if (people->BankName != NULL)
 	{
 
-		for (int i = 0; i < max-1; i++, people++)
+		for (int i = 0; i < max - 1; i++, people++)
 		{
 			fprintf(fp, "%s,%d,%d,%s,%d,%d,%d,%d,%d\n", people->BankName, people->BankCode, people->ClientCode, people->ClientName, people->CardNumber, people->AccountNumber, people->NowMoney, people->AccountPW, people->AccountDate);
 		}
 	}
 	printf("저장완료\n\n");
-	
+
 	fclose(fp);
 }
 void deposit_func(char* filename, Person* people, int max)
@@ -123,12 +123,36 @@ void withdraw_func(char* filename, Person* people, int max)
 
 			if (AccountNumber == num) // 고객의 계좌번호와 입력한 계좌번호가 일치한 경우
 			{
+				int cnt = 0;
+				while (cnt < 3)
+				{
+					int pw;
+					printf("\n비밀번호를 입력하시오 : ", cnt);
+					scanf("%d", &pw);
+
+					if (AccountPW == pw)
+						break;
+					else
+					{
+						cnt++;
+						if (cnt < 3)
+							printf("\n비밀번호가 틀렷습니다. 다시 입력하세요(%d회 오류)\n", cnt);
+						else
+							break;
+					}
+				}
+				if (cnt == 3)
+				{
+					printf("\n비밀번호를 3회이상 잘못 입력하셨습니다. 프로그램을 종료합니다.\n");
+					exit(0);
+				}
+
 			RE:
 				printf("\n출금하실 금액을 입력하시오 : ");
 				scanf("%d", &withdrawMoney);
-				if (NowMoney >= withdrawMoney) 
+				if (NowMoney >= withdrawMoney)
 				{
-					if (voicefishing() == 1)					
+					if (voicefishing() == 1)
 						exit(0);
 					NowMoney -= withdrawMoney;
 					printf("\n<출금 후 잔액 : %d원>\n", NowMoney);
@@ -161,7 +185,7 @@ int getTotalLine(char* filename) { // csv파일의 총 라인 수를 받는 코드
 int voicefishing()
 {
 	int answer;
-	ReFishing:
+ReFishing:
 	printf("\n\n\n\n※※※※※※보이스피싱 피해예방 안내※※※※※※\n\n");
 	printf("검찰, 경찰, 금융감독원이나 모르는 사람이 전화로\n");
 	printf("출금 및 이체를 요청하셨습니까?\n\n\n");
@@ -177,7 +201,7 @@ int voicefishing()
 		printf("다시 입력하세요\n");
 		goto ReFishing;
 	}
-	
+
 }
 int withdraw(char* filename, Person* people)
 {
