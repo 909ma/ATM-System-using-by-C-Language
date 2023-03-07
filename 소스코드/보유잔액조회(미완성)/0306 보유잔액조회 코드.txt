@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int AccountNumber, NowMoeney, choice;
+    char AccountPW[5]; 
+    int login_attempts = 0;
+    int flag = 0; 
+
+    int correct_AccountNumber = 1234; //임의로..
+    char correct_AccountPW[] = "1234"; //임의로..
+    char answer[10]; 
+
+    while (1) 
+    {
+        if (flag == 0) 
+        { 
+            printf("보이스피싱 관련 연락을 받으셨나요? (예/아니오): ");
+            scanf("%s", answer);
+
+            if (strcmp(answer, "예") == 0)
+            { 
+                printf("보이스피싱 방지문구를 위해 종료합니다. 이용해주셔서 감사합니다.\n");
+                exit(0);
+            }
+            flag = 1;         }
+
+        printf("계좌 번호를 입력하세요(4자리): ");
+        scanf("%4d", &AccountNumber);
+
+        printf("비밀번호를 입력하세요(4자리): ");
+        scanf("%4s", AccountPW);
+
+        if (AccountNumber == correct_AccountNumber && strcmp(AccountPW, correct_AccountPW) == 0) {
+            printf("로그인 성공\n");
+
+            NowMoeney = 10000; //임의로..
+
+            printf("현재 계좌 잔액은 %d원 입니다.\n", NowMoeney);
+
+            printf("다시 처음부터 진행하시려면 1을 입력하세요. 종료하시려면 0을 입력하세요: ");
+            scanf("%d", &choice);
+
+            if (choice == 0) {
+                break;
+            }
+        }
+        else {
+            printf("계좌 번호나 비밀번호가 일치하지 않습니다. 다시 입력하세요.\n");
+            login_attempts++;
+
+            if (login_attempts == 3)
+            {
+                printf("비밀번호 입력 실패 횟수 초과 하였습니다.\n");
+                exit(0);
+            }
+
+
+        }
+
+        printf("이용해주셔서 감사합니다.\n");
+
+
+    }
+
+    return 0;
+}
+
