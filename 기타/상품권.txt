@@ -1,0 +1,128 @@
+This code defines a structure called giftcard that represents a gift card with a number, balance, and expiry date. It also defines an array of integers called giftCards and a variable numGiftCards.
+
+The initGiftcard() function initializes all elements of the giftCards array to zero. The printGiftCards() function prints the index and balance of each gift card in the giftCards array. The findGiftCards() function takes a number argument and returns the balance of the gift card with that index. If the gift card does not exist, it returns -1. The cashExchange() function takes an index argument and sets the balance of the gift card at that index to zero, printing a message indicating that the gift card has been exchanged for cash. The giftCardExchange() function takes an index argument and exchanges the gift card at that index with the gift card at the next index in the array, printing a message indicating the exchange.
+
+The main function initializes an array of giftcard structures with three items, representing three gift cards. It calls the initGiftcard() function to initialize the giftCards array, and then calls printGiftCards() to print the initial state of the gift cards. It prompts the user to input the type of transaction they would like to perform, as well as the number of the gift card they would like to use. It then calls findGiftCards() to find the index of the gift card with the input number. If the gift card does not exist, it prints an error message. Otherwise, it calls the appropriate function (cashExchange() or giftCardExchange()) based on the input transaction type, passing the index of the gift card. Finally, it prints the details of the completed transaction, including the transaction amount and remaining balance of the gift card.
+
+However, there are several issues in the code that should be addressed:
+
+In the main() function, scanf("%s", &input_num); reads a string from user input into a single integer array. This can cause buffer overflow and undefined behavior. Instead, it should read a string into a character array, like char input_num[10]; scanf("%s", input_num);.
+
+In the findGiftCards() function, the comparison should be if (number == i) instead of if (i == number), because the number argument is the desired index, not the iterator variable.
+
+In the main() function, findGiftCards(numGiftCards) should be changed to findGiftCards(input_num) to search for the gift card with the user-inputted number.
+
+In the switch statement of the main() function, there should be a break; statement after each case to prevent the program from executing multiple cases if the input matches multiple cases.
+
+In the cashExchange() function, printf("%d번 상품권 %d원을현금으로 교환했습니다\n",index,cash); has a missing space between 원을 and 현금으로.
+
+In the giftCardExchange() function, the otherGiftCard variable should be declared as an int, not a struct giftcard, because it is being assigned the value of an element of the giftCards array, which is an integer array.
+
+In the main() function, the printf statement for the remaining balance should use the updated balance after the transaction is completed, which is returned by the cashExchange() or giftCardExchange() function. Currently
+
+
+#include <stdio.h>
+#include <string.h>
+
+struct giftcard{
+	char number[10];
+	int balance;
+	char expiry_date[10];//YYYY-MM-DD
+};
+
+int giftCards[10];
+int numGiftCards = 10;
+
+void initGiftcard()
+{
+	for (int i = 0; i < numGiftCards; i++)
+	{
+		giftCards[i] = 0;
+	}
+	printf("상품권 정보가 초기화되었습니다\n");
+}
+
+void printGiftCards()
+{
+	printf("상품권 정보:\n");
+	for (int i = 0; i < numGiftCards; i++)
+	{
+		printf("%d번 상품권: %d원\n", i, giftCards[i]);
+	}
+}
+
+int findGiftCards(int number)
+{
+	for (int i = 0; i < numGiftCards; i++)
+	{
+		if (i == number)
+		{
+			return giftCards[i];
+		}
+	}
+	return -1;
+}
+
+void cashExchange(int index)
+{
+	int cash = giftCards[index];
+	giftCards[index] = 0;
+	printf("%d번 상품권 %d원을현금으로 교환했습니다\n",index,cash);
+}
+
+void giftCardExchange(int index)
+{
+	int otherindex = (index + 1) % numGiftCards;
+
+	int otherGiftCard = giftCards[otherindex];
+	giftCards[otherindex] = giftCards[index];
+	giftCards[index] = otherGiftCard;
+	printf("%d번 상품권 %d원을 %d번 상품권 %d원과 교환했습니다.\n", index, giftCards[otherindex], otherindex, otherGiftCard);
+}
+ 
+
+
+int main()
+{
+	int input_type;
+	int input_num[10];
+	int index;
+	struct giftcard giftcards_[3]=
+	{
+	{"1234567890",50000,"2023-12-31"},
+	{"7890123456",100000,"2024-02-29"},
+	{"3456789012",200000,"2025-03-27"}
+	};
+
+
+	initGiftcard();
+	printGiftCards();
+	printf("거래종류를 입력하세요\n\n1. 현금교환\n2.상품권 교환\n3. 처음으로\n4. 사용종료\n");
+	scanf("%d", &input_type);
+	printf("상품권 번호를 입력하세요:\n");
+	scanf("%s", &input_num);
+	index = findGiftCards(numGiftCards);
+	if (index == -1)
+	{
+		printf("상품권이 존재하지 않습니다.\n");
+	}
+	else
+	{
+		switch (input_type)
+		{
+		case 1:
+			cashExchange(index);
+			break;
+		case 2:
+			giftCardExchange(index);
+			break;
+		default:
+			printf("잘못된 입력입니다\n");
+			break;
+		}
+		printf("거래가 완료되었습니다\n");
+		printf("거래금액:%d원\n", giftcards_[index].balance);
+		printf("잔액:%d원\n", giftcards_[index].balance);
+	}
+	return 0;
+}
