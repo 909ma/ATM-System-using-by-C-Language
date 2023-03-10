@@ -1,11 +1,9 @@
 #include<stdio.h>
 #include<conio.h>
 #include"ViewAccount.h"
-#include"CreatAccount.h"
-#include"ibchulguem.h"
-#include"CloseAccount.h"
-#include"DeleteAccount.h"
+#include"User_Function.h"
 #include"Menu.h"
+#include"Admin_Function.h"
 void admin()
 {
 	int MenuNum;
@@ -14,14 +12,14 @@ void admin()
 RESHOW:
 	showAdminMenu();
 RE:
-	printf("ì›í•˜ëŠ” ê¸°ëŠ¥ ì„ íƒ : ");
+	printf("¿øÇÏ´Â ±â´É ¼±ÅÃ : ");
 	scanf("%d", &MenuNum);
 	switch (MenuNum)
 	{
 	case 1:
-		ViewAccount(10);
-		printf("\n1. ì´ì „ë©”ë‰´ ëŒì•„ê°€ê¸°\t 2. ì‚¬ìš© ì¢…ë£Œ\n\n");
-		printf("ì„ íƒ : ");
+		ViewAccount();
+		printf("\n1. ÀÌÀü¸Ş´º µ¹¾Æ°¡±â\t 2. »ç¿ë Á¾·á\n\n");
+		printf("¼±ÅÃ : ");
 		scanf("%d", &menuSelect);
 		if (menuSelect == 1)
 		{
@@ -29,12 +27,12 @@ RE:
 			goto RESHOW;
 		}
 		else
-			printf("ì‚¬ìš©ì¢…ë£Œ\n");
+			printf("»ç¿ëÁ¾·á\n");
 		break;
 	case 2:
 		CreatAccount();
-		printf("\n1. ì´ì „ë©”ë‰´ ëŒì•„ê°€ê¸°\t 2. ì‚¬ìš© ì¢…ë£Œ\n\n");
-		printf("ì„ íƒ : ");
+		printf("\n1. ÀÌÀü¸Ş´º µ¹¾Æ°¡±â\t 2. »ç¿ë Á¾·á\n\n");
+		printf("¼±ÅÃ : ");
 		scanf("%d", &menuSelect);
 		if (menuSelect == 1)
 		{
@@ -42,12 +40,12 @@ RE:
 			goto RESHOW;
 		}
 		else
-			printf("ì‚¬ìš©ì¢…ë£Œ\n");
+			printf("»ç¿ëÁ¾·á\n");
 		break;
 	case 3:
 		CloseAccount();
-		printf("\n1. ì´ì „ë©”ë‰´ ëŒì•„ê°€ê¸°\t 2. ì‚¬ìš© ì¢…ë£Œ\n\n");
-		printf("ì„ íƒ : ");
+		printf("\n1. ÀÌÀü¸Ş´º µ¹¾Æ°¡±â\t 2. »ç¿ë Á¾·á\n\n");
+		printf("¼±ÅÃ : ");
 		scanf("%d", &menuSelect);
 		if (menuSelect == 1)
 		{
@@ -55,13 +53,13 @@ RE:
 			goto RESHOW;
 		}
 		else
-			printf("ì‚¬ìš©ì¢…ë£Œ\n");
+			printf("»ç¿ëÁ¾·á\n");
 		break;
 	case 4:
-		printf("ì‚¬ìš©ì„ ì¢…ë£Œí•©ë‹ˆë‹¤\n");
+		printf("»ç¿ëÀ» Á¾·áÇÕ´Ï´Ù\n");
 		break;
 	default:
-		printf("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
+		printf("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
 		goto RE;
 	}
 
@@ -74,17 +72,29 @@ int main()
 RESHOW:
 	showMenu();
 RE:
-	printf("ì›í•˜ëŠ” ê¸°ëŠ¥ ì„ íƒ : ");
+	printf("¿øÇÏ´Â ±â´É ¼±ÅÃ : ");
 	scanf("%d", &MenuNum);
 	switch (MenuNum)
 	{
 	case 1:
+		printf("\n");
+		ViewMycash("people.csv", people);
+		printf("\n1. ÀÌÀü¸Ş´º µ¹¾Æ°¡±â\t 2. »ç¿ë Á¾·á\n\n");
+		printf("¼±ÅÃ : ");
+		scanf("%d", &menuSelect);
+		if (menuSelect == 1)
+		{
+			system("cls");
+			goto RESHOW;
+		}
+		else
+			printf("»ç¿ëÁ¾·á\n");
 		break;
 	case 2:
 		printf("\n");
 		deposit("people.csv", people);
-		printf("\n1. ì´ì „ë©”ë‰´ ëŒì•„ê°€ê¸°\t 2. ì‚¬ìš© ì¢…ë£Œ\n\n");
-		printf("ì„ íƒ : ");
+		printf("\n1. ÀÌÀü¸Ş´º µ¹¾Æ°¡±â\t 2. »ç¿ë Á¾·á\n\n");
+		printf("¼±ÅÃ : ");
 		scanf("%d", &menuSelect);
 		if (menuSelect == 1)
 		{
@@ -92,13 +102,13 @@ RE:
 			goto RESHOW;
 		}
 		else
-			printf("ì‚¬ìš©ì¢…ë£Œ\n");
+			printf("»ç¿ëÁ¾·á\n");
 		break;
 	case 3:
 		printf("\n");
 		withdraw("people.csv", people);
-		printf("\n1. ì´ì „ë©”ë‰´ ëŒì•„ê°€ê¸°\t 2. ì‚¬ìš© ì¢…ë£Œ\n\n");
-		printf("ì„ íƒ : ");
+		printf("\n1. ÀÌÀü¸Ş´º µ¹¾Æ°¡±â\t 2. »ç¿ë Á¾·á\n\n");
+		printf("¼±ÅÃ : ");
 		scanf("%d", &menuSelect);
 		if (menuSelect == 1)
 		{
@@ -106,24 +116,24 @@ RE:
 			goto RESHOW;
 		}
 		else
-			printf("ì‚¬ìš©ì¢…ë£Œ\n");
+			printf("»ç¿ëÁ¾·á\n");
 		break;
-	case 4: 
+	case 4:
 		break;
 	case 5:
 		break;
 	case 6:
 		break;
 	case 7:
-		printf("ì‚¬ìš©ì„ ì¢…ë£Œí•©ë‹ˆë‹¤\n");
+		printf("»ç¿ëÀ» Á¾·áÇÕ´Ï´Ù\n");
 		break;
 	case 1111:
-		printf("ê´€ë¦¬ì ëª¨ë“œ ì ‘ì† ì™„ë£Œ\n");
+		printf("°ü¸®ÀÚ ¸ğµå Á¢¼Ó ¿Ï·á\n");
 		system("cls");
 		admin();
 		break;
 	default:
-		printf("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
+		printf("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
 		goto RE;
 	}
 
