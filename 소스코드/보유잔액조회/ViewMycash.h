@@ -37,7 +37,7 @@ int ViewMycash()
         return 1;
     }
 
-    int CardNumber, AccountNumber, AccountPW, state = -1, temp;
+    int CardNumber, AccountNumber, AccountPW, state = -1;
     int retry_count = 0; // 재시도 횟수를 저장할 변수
 
     do {
