@@ -3,25 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include"PersonStruct.h"
-void SaveData(char* filename, Person* people, int max) //출금 또는 입금 후 수정된 잔액 정보로 재저장
-{
-	FILE* fp = fopen(filename, "w");
-	if (fp == NULL) {
-		printf("File open error!\n");
-		return;
-	}
-	fprintf(fp, "BankName,BankCode,ClientCode,ClientName,CardNumber,AccountNumber,NowMoney,AccountPW,AccountDate\n");
-	if (people->BankName != NULL)
-	{
 
-		for (int i = 0; i < max - 1; i++, people++)
-		{
-			fprintf(fp, "%s,%d,%d,%s,%d,%d,%d,%d,%d\n", people->BankName, people->BankCode, people->ClientCode, people->ClientName, people->CardNumber, people->AccountNumber, people->NowMoney, people->AccountPW, people->AccountDate);
-		}
-	}
-	printf("저장완료\n");
-	fclose(fp);
-}
 void change_func(char* filename, Person* people, int max, Person*person) // 파일의 내용을 읽고 구조제 배열에 저장하는 코드
 {
 	FILE* fp = fopen(filename, "r");    // 파일을 읽기 모드로 열기
@@ -67,16 +49,6 @@ void change_func(char* filename, Person* people, int max, Person*person) // 파일
 	}
 
 	fclose(fp);    // 파일 닫기
-}
-int getTotalLine(char* filename) { // csv파일의 총 라인 수를 받는 코드
-	FILE* fp;
-	int line = 0;
-	char c;
-	fp = fopen(filename, "r");
-	while ((c = fgetc(fp)) != EOF)
-		if (c == '\n') line++;
-	fclose(fp);
-	return(line);
 }
 int change(char* filename, Person* people, Person* person) // 수정된 정보로 파일에 저장하는 코드
 {
