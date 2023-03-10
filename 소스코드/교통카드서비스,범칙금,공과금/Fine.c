@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "search.h"
 #include "PersonStruct.h"
 #include "change.h"
 
-int Utilities(Person* person)
+int Fine(Person* person)
 {
 	int fee;
-	if (person->BankCode != 41)
+	if (strcmp(person->BankName, "범칙금") != 0)
 	{
 		printf("범칙금 납부를 할 수 없는 계정입니다.\n");
 		return -1;
@@ -39,7 +40,7 @@ int main()
 	a = search("people.csv", &person, 100);
 	if (a == 0)
 	{
-		Utilities(&person);
+		Fine(&person);
 		change("people.csv", people, &person);
 	}
 	else

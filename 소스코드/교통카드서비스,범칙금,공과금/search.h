@@ -11,7 +11,7 @@ int search(char* filename, Person* people, int max_num_people) {
     FILE* fp = fopen(filename, "r");
     if (fp == NULL) {
         printf("File open error!\n");
-        return;
+        return 1;
     }
 
     int acpw, accnum;
@@ -49,6 +49,7 @@ int search(char* filename, Person* people, int max_num_people) {
            people->NowMoney = NowMoney;
            people->AccountPW = AccountPW;
            people->AccountDate = AccountDate;
+           view:
            if (AccountPW == acpw)
            {
                printf("고객님의 정보를 불러옵니다\n");
@@ -56,20 +57,25 @@ int search(char* filename, Person* people, int max_num_people) {
                break;
            }
            else
+           {
                while(i<3)
                {
                     printf("비밀번호를 %d회 틀렸습니다.\n",i);
                     if (i < 3) printf("다시 입력하세요\n");
                     scanf("%d", &acpw);
                     if (AccountPW == acpw)
+                    {
+                        goto view;
                         break;
+                    }
                     i++;
                }
            }
-       else if (count == max_num_people)
+       }
+       if (count > max_num_people)
        {
            printf("존재하지 않는 계정입니다.\n");
-           return 1;
+           return -1;
        }
        count++;
        }        
@@ -77,7 +83,7 @@ int search(char* filename, Person* people, int max_num_people) {
     if (i == 3)
     {
         printf("비밀번호를 %d회 틀렸습니다\n", i);
-        return -1;
+        return 1;
     }
     else
         return 0;

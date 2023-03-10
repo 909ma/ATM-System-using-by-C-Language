@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include"PersonStruct.h"
-void SaveData(char* filename, Person* people, int max) //출금 후 수정된 잔액 정보로 재저장
+void SaveData(char* filename, Person* people, int max) //출금 또는 입금 후 수정된 잔액 정보로 재저장
 {
 	FILE* fp = fopen(filename, "w");
 	if (fp == NULL) {
@@ -22,7 +22,7 @@ void SaveData(char* filename, Person* people, int max) //출금 후 수정된 잔액 정�
 	printf("저장완료\n");
 	fclose(fp);
 }
-void withdraw_func(char* filename, Person* people, int max, Person*person)
+void change_func(char* filename, Person* people, int max, Person*person) // 파일의 내용을 읽고 구조제 배열에 저장하는 코드
 {
 	FILE* fp = fopen(filename, "r");    // 파일을 읽기 모드로 열기
 	if (fp == NULL) {
@@ -78,10 +78,10 @@ int getTotalLine(char* filename) { // csv파일의 총 라인 수를 받는 코드
 	fclose(fp);
 	return(line);
 }
-int change(char* filename, Person* people, Person* person)
+int change(char* filename, Person* people, Person* person) // 수정된 정보로 파일에 저장하는 코드
 {
 	int line = getTotalLine(filename);
-	withdraw_func(filename, people, line, person);
+	change_func(filename, people, line, person);
 	SaveData(filename, people, line);
 	return 0;
 }

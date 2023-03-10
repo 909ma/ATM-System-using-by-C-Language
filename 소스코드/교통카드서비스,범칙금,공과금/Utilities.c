@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "search.h"
 #include "PersonStruct.h"
 #include "change.h"
@@ -7,7 +8,7 @@
 int Utilities(Person *person)
 {
 	int fee;
-	if (person->BankCode != 40)
+	if (strcmp(person->BankName, "공과금") != 0)
 	{
 		printf("공과금 납부를 할 수 없는 계정입니다.\n");
 		return -1;

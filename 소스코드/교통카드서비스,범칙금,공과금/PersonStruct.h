@@ -1,6 +1,4 @@
 #pragma once
- 
-#include<stdio.h>
 
 typedef struct {
     char BankName[20];
