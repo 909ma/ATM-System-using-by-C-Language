@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "read.h"
 #include "GiftStruct.h"
-#include "Exchange.h"
+//#include "Exchange.h"
 int input_num;
 
 //char expiry_date[11];

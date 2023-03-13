@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "GiftStruct.h"
-#include "Exchange.h"
+//#include "Exchange.h"
 
 int read_csv_file(char* file_name,gift_struct* voucher,int max_num_voucher)
 {

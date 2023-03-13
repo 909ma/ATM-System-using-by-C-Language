@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "giftCards.h"
 //#include "giftCards_cancle.h"
-#include "Exchange.h"
+//#include "Exchange.h"
 int main() {
     
     int input;
