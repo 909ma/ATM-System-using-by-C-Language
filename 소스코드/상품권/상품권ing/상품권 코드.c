@@ -58,5 +58,5 @@ START:
     else
         printf(" 잘못된 입력입니다.\n");
     return 0;
+    
 }
-
