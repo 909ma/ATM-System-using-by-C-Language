@@ -23,11 +23,20 @@ void showAdminMenu()
 	printf("4.	사용 종료\n\n");
 }
 
-void addition()
+void payMenu()
+{
+	printf("\n\n======[   계좌 납부 메뉴    ]=======\n\n");
+	printf("1.	범칙금 납부 서비스\n\n");
+	printf("2.	공과금 납부 서비스\n\n");
+	printf("3.	    뒤로 가기\n\n");
+}
+
+void addtionMenu()
 {
 	printf("\n\n======[   부가서비스 메뉴    ]=======\n\n");
 	printf("1.	교통카드 서비스\n\n");
 	printf("2.	상품권 거래 서비스\n\n");
+	printf("3.	    뒤로 가기\n\n");
 }
 
 void trafficCard()
@@ -57,8 +66,10 @@ RE:
 		break;
 	case 2:
 		CreatAccount();
+		MergeAccount();
+		NameChange();
 		if (BackToMenu() == 1)
-			goto RESHOW;
+			goto RESHOW; 
 		break;
 	case 3:
 		CloseAccount();
@@ -73,4 +84,96 @@ RE:
 		goto RE;
 	}
 
+}
+
+void pay_Func()
+{
+	int MenuNum;
+	int menuSelect;
+	int a;
+	int line = getTotalLine("people.csv");
+	Person person;
+	Person* people = malloc(sizeof(Person) * 150);
+RESHOW:
+	payMenu();
+RE:
+	printf("\n원하는 기능 선택 : ");
+	scanf("%d", &MenuNum);
+	switch (MenuNum)
+	{
+	case 1:
+		a = search("people.csv", people, &person, line);
+		if (a == 0)
+		{
+			Fine(&person);
+			change("people.csv", people, &person, line);
+		}
+		else
+			printf("결제가 취소되었습니다.\n");
+		free(people);
+		if (BackToMenu() == 1)
+			goto RESHOW;
+		break;
+	case 2:
+		a = search("people.csv", people, &person, line);
+		if (a == 0)
+		{
+			Utilities(&person);
+			change("people.csv", people, &person, line);
+		}
+		else
+			printf("결제가 취소되었습니다.\n");
+		free(people);
+		if (BackToMenu() == 1)
+			goto RESHOW;
+		break;
+	case 3:
+		system("cls");
+		main();
+		break;
+	default:
+		printf("다시 입력해주세요\n");
+		goto RE;
+	}
+}
+
+void addtion_Func()
+{
+	int MenuNum;
+	int menuSelect;
+	int a;
+	int line = getTotalLine("people.csv");
+	Person person;
+	Person* people = malloc(sizeof(Person) * 150);
+RESHOW:
+	addtionMenu();
+RE:
+	printf("\n원하는 기능 선택 : ");
+	scanf("%d", &MenuNum);
+	switch (MenuNum)
+	{
+	case 1:
+		a = search("people.csv", people, &person, line);
+		if (a == 0)
+		{
+			TrafficCard(&person);
+			change("people.csv", people, &person, line);
+		}
+		else
+			printf("결제가 취소되었습니다.\n");
+		free(people);
+		if (BackToMenu() == 1)
+			goto RESHOW;
+		break;
+	case 2:
+
+		break;
+	case 3:
+		system("cls");
+		main();
+		break;
+	default:
+		printf("다시 입력해주세요\n");
+		goto RE;
+	}
 }
