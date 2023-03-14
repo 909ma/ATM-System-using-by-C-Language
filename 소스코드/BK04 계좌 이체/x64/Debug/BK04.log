@@ -1,0 +1,11 @@
+﻿  transfer.c
+C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\User_Function.h(46,6): warning C4102: 'RE': 참조되지 않은 레이블입니다.
+C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\User_Function.h(33,6): warning C4101: 'AccountNumber' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\User_Function.h(33,21): warning C4101: 'NowMoney' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\User_Function.h(69,6): warning C4101: 'AccountNumber' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\User_Function.h(69,32): warning C4101: 'NowMoney' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\User_Function.h(69,21): warning C4101: 'AccountPW' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\User_Function.h(151,56): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\transfer.c(189,11): warning C4098: 'passCash': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\transfer.c(197,11): warning C4098: 'passCash': 'void' 함수에서 값을 반환하고 있습니다.
+  BK04.vcxproj -> C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\x64\Debug\BK04.exe
