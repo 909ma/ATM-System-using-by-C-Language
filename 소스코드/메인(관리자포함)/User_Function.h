@@ -42,6 +42,29 @@ void deposit_func(char* filename, Person* people, int max)
 			if (people[i].AccountNumber == AccNum) // 고객의 계좌번호와 입력한 계좌번호가 일치한 경우
 			{
 				findAcc = 1;
+				int pw_count = 0;
+				while (pw_count < 3)
+				{
+					int pw;
+					printf("\n비밀번호를 입력하시오 : ");
+					scanf("%d", &pw);
+
+					if (people[i].AccountPW == pw)
+						break;
+					else
+					{
+						pw_count++;
+						if (pw_count < 3)
+							printf("\n비밀번호가 틀렷습니다. 다시 입력하세요(%d회 오류)\n", pw_count);
+						else
+							break;
+					}
+				}
+				if (pw_count == 3)
+				{
+					printf("\n비밀번호를 3회이상 잘못 입력하셨습니다. 프로그램을 종료합니다.\n");
+					exit(0);
+				}
 			RE:
 				printf("\n입금하실 금액을 입력하시오 : ");
 				scanf("%d", &depositMoney);
@@ -330,67 +353,7 @@ int Utilities(Person* person)	//공과금 납부
 	}
 }
 
-int TrafficCard(Person* person)
-{
-	int option = 0;
-	int dp, wd, select1 = 0;
-	if (strcmp(person->BankName, "교통카드") != 0)
-	{
-		printf("\n\n교통카드가 아닙니다\n");
-		return 0;
-	}
-	else
-	{
-		printf("\n현재잔액은 %d원입니다.\n", person->NowMoney);
-		printf("\n\n원하시는 메뉴를 선택해주십시오\n");
-		printf("\n\n 1. 충전 2. 환불  3. 취소\n");
-		printf("\n\n 입력 : ");
-		scanf("%d", &option);
-		switch (option)
-		{
-		case 1:
-		{
-			printf("\n현금을 넣어주세요 : ");
-			scanf("%d", &dp);
-			printf("\n입금중입니다.\n");
-			person->NowMoney += dp;
-			break;
-		}
-		case 2:
-		{
-			while (1)
-			{
-				printf("\n환불할 금액을 정하세요 : ");
-				scanf("%d", &wd);
-				if (wd > person->NowMoney)
-				{
-					printf("\n현금을 출력할수 없습니다. 다시 입력하시겠습니까?\n[1. 네	2. 아니오]\n");
-					scanf("%d", &select1);
-					if (select1 == 1);
-					else if (select1 == 2)
-						break;
-				}
-				else
-				{
-					printf("\n현금을 출력중입니다.\n");
-					person->NowMoney -= wd;
-					break;
-				}
-			}
-			break;
-		}
-		case 3:
-		{
-			printf("\n거래가 취소되었습니다.\n");
-			break;
-		}
-		}
-		if (option != 3)printf("\n총 잔액은 %d원입니다.\n", person->NowMoney);
-		printf("\n잠시 후 메인화면으로 돌아갑니다.\n");
-		return 0;
-	}
 
-}
 int withdraw(char* filename, Person* people)
 {
 	int line = getTotalLine(filename);

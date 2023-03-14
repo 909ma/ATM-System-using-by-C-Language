@@ -39,6 +39,12 @@ void addtionMenu()
 	printf("3.	    뒤로 가기\n\n");
 }
 
+void giftCardMenu()
+{
+	printf("\n\n======[   상품권 메뉴    ]=======\n\n");
+	printf("1.	상품권 거래 서비스\n\n");
+	printf("2.	    뒤로 가기\n\n");
+}
 void trafficCard()
 {
 	printf("\n\n======[   교통카드 메뉴    ]=======\n\n");
@@ -166,7 +172,7 @@ RE:
 			goto RESHOW;
 		break;
 	case 2:
-
+		GiftCardFunc();
 		break;
 	case 3:
 		system("cls");
@@ -176,4 +182,34 @@ RE:
 		printf("다시 입력해주세요\n");
 		goto RE;
 	}
+}
+int GiftCardFunc()
+{
+	int MenuNum;
+	int temp;
+	gift_struct gift;
+START:
+	giftCardMenu();
+	printf(" 이용하실 번호를 선택하세요 : ");
+	scanf("%d", &MenuNum);
+	switch (MenuNum)
+	{
+	case 1:
+		printf("\n\t\t [ 상품권 거래 ]\n");
+		temp = giftCards(&gift);
+		register_giftCards("new_gift.csv", &gift);
+		//if (temp == 1)
+		//	goto START;
+		break;
+	case 2:
+		system("cls");
+		main();
+		break;
+
+	default:
+		printf("다시 입력해주세요\n");
+		goto START;
+	}
+	return 0;
+
 }

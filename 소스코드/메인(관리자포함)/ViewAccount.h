@@ -46,24 +46,23 @@ void read_csv_file(char* filename, Person* people, int max_num_people) {
             count++;
         }
     }
-    
+
 
     fclose(fp);    // 파일 닫기
 }
 int ViewAccount() {
     int line = getTotalLine("people.csv");
-    Person* people = malloc(sizeof(Person) * 100);// 최대 100명의 사람 정보를 저장할 수 있는 배열 동적 할당
+    Person* people = malloc(sizeof(Person) * 150);// 최대 100명의 사람 정보를 저장할 수 있는 배열 동적 할당
 
     read_csv_file("people.csv", people, line - 1);//a의 인원수를 조회 
 
-    printf("No.  BankName  BankCode  ClientCode  ClientName  CardNumber  AccountNumber   NowMoney  AccountPW  AccountDate\n");
     for (int i = 0; i < line - 1; i++) {
-        printf("%3d  %8s  %8d  %10d  %10s  %10d  %13d  %9d       %04d  %11d\n", i, people[i].BankName, people[i].BankCode, people[i].ClientCode, people[i].ClientName, people[i].CardNumber, people[i].AccountNumber, people[i].NowMoney, people[i].AccountPW, people[i].AccountDate);
-        if (i % 10 == 0 && i != 0)
+        if (i % 10 == 0)
             printf("\nNo.  BankName  BankCode  ClientCode  ClientName  CardNumber  AccountNumber   NowMoney  AccountPW  AccountDate\n");
+        printf("%3d  %8s  %8d  %10d  %10s  %10d  %13d  %9d       %04d  %11d\n", i, people[i].BankName, people[i].BankCode, people[i].ClientCode, people[i].ClientName, people[i].CardNumber, people[i].AccountNumber, people[i].NowMoney, people[i].AccountPW, people[i].AccountDate);
     }
     free(people);// 동적 할당된 메모리 해제
 
     return 0;
-}
+} 
 
