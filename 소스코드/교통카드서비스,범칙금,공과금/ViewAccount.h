@@ -46,7 +46,7 @@ void read_csv_file(char* filename, Person* people, int max_num_people) {
             count++;
         }
     }
-    
+
 
     fclose(fp);    // ÆÄÀÏ ´Ý±â
 }

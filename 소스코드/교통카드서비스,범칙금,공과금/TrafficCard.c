@@ -68,7 +68,7 @@ int TrafficCard(Person*person)
 int main()
 {
 	Person person;
-	Person* people = malloc(sizeof(Person) * 100);
+	Person people[100];
 	int a;
 	a = search("people.csv", people, &person);
 	if (a == 0)
@@ -78,6 +78,6 @@ int main()
 	}
 	else
 		printf("결제가 취소되었습니다.\n");
-	free(people);
+	//free(people);
 	return 0;
 }
