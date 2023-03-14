@@ -5,7 +5,7 @@
 #include "PersonStruct.h"
 #include "change.h"
 
-int Utilities(Person *person)
+int Utilities(Person *person)	//공과금 납부
 {
 	int fee;
 	if (strcmp(person->BankName, "공과금") != 0)

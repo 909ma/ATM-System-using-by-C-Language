@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
-#include"ViewAccount.h"
+#include"ViewAccount.h" 
 #include"User_Function.h"
 #include"Menu.h"
 #include"Admin_Function.h"
@@ -37,10 +37,12 @@ RE:
 	case 4:
 		break;
 	case 5:
+		printf("\n");
+		pay_Func();
 		break;
 	case 6:
 		system("cls");
-		addition();
+		addtion_Func();
 		break;
 	case 7:
 		printf("사용을 종료합니다\n");
