@@ -20,7 +20,8 @@ int crime2; //범죄 여부
 int choiceBk; //은행서선택
 int inputNum; //계좌입력
 int inputPw; //비밀번호 입력
-int state = -1; // -1일 경우 검색 안됨 고객 정보가 담은 행 번호
+int state1 = -1; // -1일 경우 검색 안됨 고객 정보가 담은 행 번호 /보낸사람
+int state2 = -1; // -1일 경우 검색 안됨 고객 정보가 담은 행 번호 /받는사람
 int AccNum; //송금계좌
 int depositMoney; //송금금액
 int bkCode; //은행코드
@@ -31,7 +32,7 @@ int myAccountInfo(); //프로토타입 선언(원형함수 선언)
 void passCash();
 
 //계좌이체
-int main(char* filename, Person* people)
+int main(char* filename)
 {	
 	printf("검찰, 경찰 금융감독원이나 모르는 사람이 전화로 이체를 요청하였습니까?\n");
 	printf("또는, 대출받기 위해서는 먼저 수수료, 기존 대출금 상환 등이 필요하다며 이체를 요청하였습니까?\n");
@@ -53,18 +54,19 @@ int main(char* filename, Person* people)
 			printf("%d. 타행이체\n", no);
 			scanf_s("%d", &choiceBk);
 
-			if (choiceBk == yes)
+			if (choiceBk == yes) 
 			{
-				state = myAccountInfo();				
+				//당행 이체시
+				START:
+				state1 = myAccountInfo();
+				state2 = OtherAccountInfo(bkCode);
 
 				//송금 계좌 입력 및 이체
-				passCash(state, 0);
+				//passCash(state1);
 
 			}
 			else if (choiceBk == no)
 			{
-				state = myAccountInfo();
-
 				//은행선택
 				printf("송금하실 은행을 선택하세요.");
 				PrintBankCode();
@@ -81,13 +83,19 @@ int main(char* filename, Person* people)
 					}
 					break;
 				}
+				
+				//타행 이체시
+				state1 = myAccountInfo();
+				state2 = OtherAccountInfo(bkCode);
+				
 				//송금 계좌 입력 및 이체
-				passCash(state, bkCode);
+				//passCash(state1, state2);
 			}
 			else
 			{
 				return 0;
 			}
+			passCash(state1, state2);
 		}
 		else if (crime2 == yes) //범죄 2차검증. 거래 계속 선택시
 		{
@@ -117,6 +125,7 @@ int main(char* filename, Person* people)
 	}	
 }
 
+//본인계좌정보
 int myAccountInfo()
 {
 	read_csv_file("people.csv", people, MAX_NUM);
@@ -152,12 +161,12 @@ int myAccountInfo()
 	}
 
 	//고객 계좌와 일치하는 파일의 행 찾기
-	for (int i = 1; i < MAX_NUM + 1; i++)
+	for (int i = 0; i < MAX_NUM - 1; i++)
 	{
 		if (people[i].AccountNumber == inputNum)
 		{
-			state = i;
-			if (people[state].AccountNumber == inputNum)
+			state1 = i;
+			if (people[state1].AccountNumber == inputNum)
 			{
 				break;
 			}
@@ -172,15 +181,59 @@ int myAccountInfo()
 	//일치하는 행의 정보를 가져오기
 	printf("%s, %d, %d, %s, %d", people->BankName, people->AccountNumber, people->NowMoney, people->ClientName, people->AccountDate);
 	
-	return state;
+	return state1;
 }
 
-void passCash(state, bkCode)
+//타인 계좌 정보
+int OtherAccountInfo(bkCode)
+{
+	read_csv_file("people.csv", people, MAX_NUM);
+
+	//계좌입력
+	while (1)
+	{
+		printf("송금 받으실 분의 계좌를 입력하세요.");
+		scanf_s("%d", &AccNum);
+
+		if (AccNum > 999 || AccNum < 0)
+		{
+			printf("입력이 잘못되었습니다.");
+			return 0;
+		}
+	}
+
+	//고객 계좌와 일치하는 파일의 행 찾기
+	for (int i = 0; i < MAX_NUM - 1; i++)
+	{
+		if (people[i].AccountNumber == AccNum)
+		{
+			state2 = i;
+			if (people[state2].AccountNumber == AccNum)
+			{
+				break;
+			}
+			else
+			{
+				printf("조회된 정보가 없습니다.\n");
+				return 0;
+			}
+		}
+	}
+	if (bkCode == people[state2].BankCode)
+	{
+		printf("고객님의 은행과 송금하실 은행이 일치합니다.\n");
+		printf("당행이체 화면으로 이동합니다.\n");
+	}
+
+	return state2;
+}
+
+void passCash(state1, state2)
 {
 	read_csv_file("people.csv", people, MAX_NUM);
 
 	//송금 계좌 입력하기
-	printf("송금하실 계좌를 입력하세요.");
+	printf("송금 받으실 분의 계좌를 입력하세요.");
 	scanf_s("%d", &AccNum);
 
 	if (inputNum > 999 || inputNum < 0)
@@ -201,19 +254,19 @@ void passCash(state, bkCode)
 
 	if (bkCode != 0)
 	{
-		people[state].NowMoney -= (depositMoney+1000);
+		people[state1].NowMoney -= (depositMoney+1000);//보내는 계좌에서 돈이 빠짐
+		people[state2].NowMoney -= (depositMoney+1000);//받는 계좌에 돈이 늘어남		
 	}
 	else
 	{
-		people[state].NowMoney -= depositMoney;
+		people[state1].NowMoney -= depositMoney;
 	}
-
-	
 
 	int line = getTotalLine("people.csv");
 	SaveData("people.csv", people, line);
 
-	printf("\n<이체 후 잔액 : %d원>\n", people[state].NowMoney);
+	printf("\n<이체 후 잔액 : %d원>\n", people[state1].NowMoney);
 	printf("송금이 완료되었습니다. 이용해주셔서 감사합니다.");
 	
 }
+
