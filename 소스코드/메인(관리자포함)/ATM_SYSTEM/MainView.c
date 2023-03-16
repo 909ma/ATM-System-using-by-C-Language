@@ -1,3 +1,6 @@
+#pragma once
+#pragma warning(disable:4996)
+
 #include<stdio.h>
 #include<conio.h>
 #include"ViewAccount.h" 
@@ -5,6 +8,8 @@
 #include"Menu.h"
 #include"Admin_Function.h"
 #include"Addtion_Function.h"
+#include"remit.h"
+
 
 int main()
 {
@@ -36,6 +41,10 @@ RE:
 			goto RESHOW;
 		break;
 	case 4:
+		printf("\n");
+		remit();		
+		if (BackToMenu() == 1)
+			goto RESHOW;
 		break;
 	case 5:
 		printf("\n");
