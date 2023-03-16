@@ -1,8 +1,10 @@
 #pragma once
+#pragma	warning(disable:4996)
 #include<stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "ExtraFunc.h"
+#include<stdlib.h>
+#include<string.h>
+#include"ExtraFunc.h"
+#include"PersonStruct.h"
 
 void SaveData(char* filename, Person* people, int max) //출금 후 수정된 잔액 정보로 재저장
 {
@@ -42,29 +44,6 @@ void deposit_func(char* filename, Person* people, int max)
 			if (people[i].AccountNumber == AccNum) // 고객의 계좌번호와 입력한 계좌번호가 일치한 경우
 			{
 				findAcc = 1;
-				int pw_count = 0;
-				while (pw_count < 3)
-				{
-					int pw;
-					printf("\n비밀번호를 입력하시오 : ");
-					scanf("%d", &pw);
-
-					if (people[i].AccountPW == pw)
-						break;
-					else
-					{
-						pw_count++;
-						if (pw_count < 3)
-							printf("\n비밀번호가 틀렷습니다. 다시 입력하세요(%d회 오류)\n", pw_count);
-						else
-							break;
-					}
-				}
-				if (pw_count == 3)
-				{
-					printf("\n비밀번호를 3회이상 잘못 입력하셨습니다. 프로그램을 종료합니다.\n");
-					exit(0);
-				}
 			RE:
 				printf("\n입금하실 금액을 입력하시오 : ");
 				scanf("%d", &depositMoney);
@@ -232,128 +211,6 @@ int ViewMyCash_func(char* filename, Person* people, int max)
 
 	return 0;
 }
-int search(char* filename, Person* people, Person* person, int max) {
-	int accnum, acpw;
-	int i = 1, j;
-	printf("\n\n계좌번호를 입력하세요 : ");
-	scanf("%d", &accnum);
-	printf("\n\n비밀번호를 입력하세요 : ");
-	scanf("%d", &acpw);
-	read_csv_file("people.csv", people, max - 1);
-	for (j = 0; j < max - 1; j++)
-	{
-		if (people[j].AccountNumber == accnum)
-			*person = people[j];
-	}
-view:
-		if (person->AccountPW == acpw)
-		{
-			printf("\n\n고객님의 정보를 불러옵니다\n\n");
-			printf("\"%s\"님 잔액 : %d\\\n\n", person->ClientName, person->NowMoney);
-			
-		}
-		else
-		{
-			while (i < 3)
-			{
-				printf("\n\n비밀번호를 %d회 틀렸습니다.\n", i);
-				if (i < 3) printf("다시 입력하세요\n");
-				scanf("%d", &acpw);
-				if (person->AccountPW == acpw)
-				{
-					goto view;
-					break;
-				}
-				i++;
-			}
-		}
-	
-	if (i == 3)
-	{
-		printf("\n\n비밀번호를 %d회 틀렸습니다\n", i);
-		return 1;
-	}
-	else
-		return 0;
-}
-
-int change(char* filename, Person* people, Person* person, int max) // 수정된 정보로 파일에 저장하는 코드
-{
-	read_csv_file("people.csv", people, 100);
-	for (int i = 0; i < 100; i++)
-	{
-		if (people[i].AccountNumber == person->AccountNumber) // 고객의 계좌번호와 입력한 계좌번호가 일치한 경우
-		{
-			people[i].NowMoney = person->NowMoney;
-		}
-	}
-	SaveData(filename, people, max);
-	return 0;
-}
-
-int Fine(Person* person) // 범칙금 납부
-{
-	int fee;
-	if (strcmp(person->BankName, "범칙금") != 0)
-	{
-		printf("범칙금 납부를 할 수 없는 계정입니다.\n");
-		return -1;
-	}
-	else
-	{
-		RePay:
-		printf("\"%s\" 고객님의 범칙금 납부금액을 입력하세요 : ", person->ClientName);
-		scanf("%d", &fee);
-		if (person->NowMoney < fee)
-		{
-			printf("\n납부에 실패하였습니다. 다시 입력해주세요.\n");
-			goto RePay;
-		}
-		else
-		{
-			person->NowMoney -= fee;
-			printf("\n\n납부가 완료되었습니다.\n");
-			printf("\n고객명: %s\n", person->ClientName);
-			printf("\n납부액: %d\\\n", fee);
-			printf("\n잔액: %d\\\n", person->NowMoney);
-		}
-		printf("\n잠시 후 메인 화면으로 돌아갑니다.\n");
-		return 0;
-	}
-}
-
-int Utilities(Person* person)	//공과금 납부
-{
-	int fee;
-	if (strcmp(person->BankName, "공과금") != 0)
-	{
-		printf("공과금 납부를 할 수 없는 계정입니다.\n");
-		return -1;
-	}
-	else
-	{
-		ReUtil:
-		printf("\n\"%s\" 고객님의 공과금 납부금액을 입력하세요 : ", person->ClientName);
-		scanf("%d", &fee);
-		if (person->NowMoney < fee)
-		{
-			printf("\n\n납부에 실패하였습니다. 다시 입력해주세요.\n");
-			goto ReUtil;
-		}
-		else
-		{
-			person->NowMoney -= fee;
-			printf("\n\n납부가 완료되었습니다.\n");
-			printf("\n고객명: %s\n", person->ClientName);
-			printf("\n납부액: %d\\\n", fee);
-			printf("\n잔액: %d\\\n", person->NowMoney);
-		}
-		printf("\n잠시 후 메인 화면으로 돌아갑니다.\n");
-		return 0;
-	}
-}
-
-
 int withdraw(char* filename, Person* people)
 {
 	int line = getTotalLine(filename);
@@ -373,4 +230,4 @@ int ViewMycash(char* filename, Person* people)
 	int line = getTotalLine(filename);
 	ViewMyCash_func(filename, people, line);
 	return 0;
-} 
+}
