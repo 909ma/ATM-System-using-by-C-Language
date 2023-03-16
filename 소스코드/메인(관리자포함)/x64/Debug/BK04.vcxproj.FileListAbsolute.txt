@@ -1,4 +1,0 @@
-C:\Users\SJB\Desktop\KB2023\ATM Backup\BK04 계좌이체\BK04\x64\Debug\BK04.exe
-C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\BK04 계좌 이체\x64\Debug\BK04.exe
-C:\Users\KB\Desktop\김신혁\BK04 계좌 이체\x64\Debug\BK04.exe
-C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\BK04 계좌 이체 - 김신혁\(VS실행) BK04 계좌 이체\x64\Debug\BK04.exe

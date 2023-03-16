@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ExtraFunc.h"
+#include "ExtraFunc.h" 
 #include "PersonStruct.h"
 #include "ViewAccount.h"
 
@@ -24,6 +24,7 @@ void write_csv_file(char* filename, Person* people) {       //파일 쓰기
 
 int CreatAccount() {        // 계좌 개설
     Person person;
+    getchar();
     printf("Enter BankName: ");
     gets(person.BankName);//fgets를 쓰면 데이터에 '\n'가 들어가서 데이터형 개선해야 
 
@@ -189,7 +190,7 @@ int DeleteAccount(char file_path[100], int delete_index) {
 
 int CloseAccount() {
     int line = getTotalLine("people.csv");
-    Person* people = malloc(sizeof(Person) * 100);// 최대 100명의 사람 정보를 저장할 수 있는 배열 동적 할당
+    Person* people = malloc(sizeof(Person) * 150);// 최대 100명의 사람 정보를 저장할 수 있는 배열 동적 할당
     read_csv_file("people.csv", people, line - 1);//a의 인원수를 조회 
 
     int InputCardNumber, InputAccountNumber, state = -1, temp;
@@ -235,7 +236,7 @@ int CloseAccount() {
         }
         else if (concent == 'Y') {
             //해지 내용 
-            temp = DeleteAccount("people.csv", state);
+            temp = DeleteAccount("people.csv", state+1);
             if (temp == 0)
                 printf("해지에 성공하였습니다.\n");
             else
