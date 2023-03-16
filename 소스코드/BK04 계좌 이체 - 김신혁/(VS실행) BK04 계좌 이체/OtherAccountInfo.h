@@ -10,6 +10,7 @@
 #include"User_Function.h"
 #include"myAccountInfo.h"//변수랑 내 계좌 조회 기능 담음
 #define MAX_NUM 150
+
 int OtherAccountInfo(int lineA,int typeA){
 	read_csv_file("people.csv", people, MAX_NUM);//정보 받아옴
 	for(int i = 0; i < 3; i++){//계좌 입력
@@ -36,11 +37,19 @@ int OtherAccountInfo(int lineA,int typeA){
 				return -1;
 			}
 		}
-		if (people[lineA].BankCode != people[state2].BankCode){
-			printf("당행 이체에서는 송금 하실 수 없는 계좌입니다.\n");
-			return -1;
-		}//은행 코드 검사
-		printf("고객님께서 입력하신 계좌의 주인은 %s입니다.\n", people[state2].ClientName);
+		if (people[lineA].BankCode != people[state2].BankCode)
+		{
+			printf("고객님이 이체하시는 은행과 송금하시려는 계좌의 은행이 다릅니다.\n");
+			printf("송금 은행 : %s \n", &people[state2].BankName);
+			printf("타행 이체로 적용됩니다. 타행 이체에는 수수료가 적용됩니다.\n");
+
+			return OtherAccountInfo(lineA, 2);			
+		}
+		else
+		{
+			//은행 코드 검사
+			printf("고객님께서 입력하신 계좌의 주인은 %s입니다.\n", people[state2].ClientName);
+		}
 	}
 	else if (typeA == 2) {//타행 이체, typeA ==2인지 확인
 		for (int i = 0; i < MAX_NUM - 1; i++){
@@ -54,10 +63,17 @@ int OtherAccountInfo(int lineA,int typeA){
 			}
 		}
 		if (people[lineA].BankCode == people[state2].BankCode){
-			printf("타행 이체에서는 송금 하실 수 없는 계좌입니다.\n");
-			return -1;
-		}//은행 코드 검사
-		printf("고객님께서 입력하신 계좌의 은행은 %s은행이고 계좌의 주인은 %s입니다.\n", people[state2].BankName, people[state2].ClientName);
+			
+			printf("고객님이 이체하시는 은행과 송금하시려는 계좌의 은행이 같습니다.\n");
+			printf("송금 은행 : %s \n", &people[state2].BankName);
+			printf("당행 이체로 적용됩니다.\n");
+			return OtherAccountInfo(lineA, 1);
+		}
+		else
+		{
+			//은행 코드 검사
+			printf("고객님께서 입력하신 계좌의 은행은 %s은행이고 계좌의 주인은 %s입니다.\n", people[state2].BankName, people[state2].ClientName);
+		}
 	}
 	return state2;
 }

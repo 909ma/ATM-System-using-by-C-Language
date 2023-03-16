@@ -23,7 +23,7 @@ int myAccountInfo()
 	{
 		printf("계좌번호를 입력하세요.\n");
 		scanf_s("%d", &inputNum);
-		if (inputNum > 999 || inputNum < 0)//계좌번호 예외처리
+		if (inputNum > 999 || inputNum < 100)//계좌번호 예외처리
 		{
 			printf("계좌번호가 틀렸습니다. 다시 입력하세요.\n");
 			continue;
