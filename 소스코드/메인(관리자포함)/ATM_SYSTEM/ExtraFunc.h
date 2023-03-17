@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "GiftStruct.h"
+#include "VoiceCheck.h"
+
 int countFileLines(char* file_name) {
 	// 파일에서 전체 라인 수를 세는 함수
 	FILE* fp;  // 파일 포인터
@@ -77,19 +79,28 @@ int crime()
 {
 	int crime;
 ReCrime:
+	PlaySound(TEXT(".\\BankVoice\\CrimeCheck.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	printf("검찰, 경찰 금융감독원이나 모르는 사람이 전화로 이체를 요청하였습니까?\n");
 	printf("또는, 대출받기 위해서는 먼저 수수료, 기존 대출금 상환 등이 필요하다며 이체를 요청하였습니까?\n");
 	printf("1. 예 (거래중단)\n");
 	printf("2. 아니오 (계속거래)\n");
 	scanf_s("%d", &crime);
+	checkKey(crime);
+
 	if (crime == 1)
-		return 1;
-	else if (crime == 2)
-	{
+	{		
+		PlaySound(TEXT(".\\BankVoice\\WorkCancel.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		Sleep(2000);
+		PlaySound(TEXT(".\\BankVoice\\CheckAndBye.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		
 		printf("거래가 취소 되었습니다.\n처음부터 다시 시작하여 주십시오.\n");
 		printf("놓고 가시는 물건이 없는지 확인하여 주십시오.\n");
 		printf("이용해주셔서 감사합니다.\n");
 		printf("확인");
+		return 1;
+	}
+	else if (crime == 2)
+	{
 		return 2;
 	}
 	else
@@ -102,19 +113,28 @@ int voicefishing()
 {
 	int answer;
 ReFishing:
+	PlaySound(TEXT(".\\BankVoice\\phishingCheck.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	printf("검찰, 경찰 금융감독원이나 모르는 사람이 전화로 이체를 요청하였습니까?\n");
 	printf("또는, 대출받기 위해서는 먼저 수수료, 기존 대출금 상환 등이 필요하다며 이체를 요청하였습니까?\n");
 	printf("1. 예 (거래중단)\n");
 	printf("2. 아니오 (계속거래)\n");
 	scanf_s("%d", &answer);
+	checkKey(answer);
 	if (answer == 1)
-		return 1;
-	else if (answer == 2)
 	{
+		PlaySound(TEXT(".\\BankVoice\\WorkCancel.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		Sleep(2000);
+		PlaySound(TEXT(".\\BankVoice\\CheckAndBye.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
 		printf("거래가 취소 되었습니다.\n처음부터 다시 시작하여 주십시오.\n");
 		printf("놓고 가시는 물건이 없는지 확인하여 주십시오.\n");
 		printf("이용해주셔서 감사합니다.\n");
 		printf("확인");
+		return 1;
+	}		
+	else if (answer == 2)
+	{
+		
 		return 2;
 	}
 	else
@@ -133,7 +153,12 @@ int BackToMenu()
 	if (menuSelect == 1)
 		return menuSelect;
 	else if (menuSelect == 2)
+	{
+		Sleep(3000);
+		PlaySound(TEXT(".\\BankVoice\\CheckAndBye.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		printf(" \n\n놓고 가시는 물건은 없는지 확인하여 주십시오.\n\t 이용해주셔서 감사합니다. \n\t\tTHANK YOU\n");
+
+	}
 	else
 	{
 		printf("다시 입력하세요\n");

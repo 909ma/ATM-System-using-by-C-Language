@@ -27,7 +27,9 @@ C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(�
 C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\passCash.h(35,35): warning C4098: 'passCash': 'void' 함수에서 값을 반환하고 있습니다.
 C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\passCash.h(42,9): warning C4477: 'printf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'int *'입니다.
 C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\passCash.h(42,9): warning C4313: 'printf': 서식 문자열의 '%d'이(가) int *' 형식의 인수 2과(와) 충돌합니다.
-C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\ExtraFunc.h(126): warning C4715: 'BackToMenu': 모든 제어 경로에서 값을 반환하지는 않습니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\remit.h(34,4): warning C4033: 'remit'은(는) 값을 반환해야 합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\remit.h(40,3): warning C4033: 'remit'은(는) 값을 반환해야 합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\ExtraFunc.h(168): warning C4715: 'BackToMenu': 모든 제어 경로에서 값을 반환하지는 않습니다.
 C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(273): warning C4715: 'ViewMyCash_func': 모든 제어 경로에서 값을 반환하지는 않습니다.
-C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\remit.h(97): warning C4715: 'remit': 모든 제어 경로에서 값을 반환하지는 않습니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\remit.h(70): warning C4715: 'remit': 모든 제어 경로에서 값을 반환하지는 않습니다.
   ATM_SYSTEM.vcxproj -> C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\x64\Debug\ATM_SYSTEM.exe
