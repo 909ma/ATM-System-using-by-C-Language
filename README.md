@@ -33,13 +33,14 @@ CLI 기반 C언어 시스템 구현하는 것이 목표입니다. 이를 위해 
 * 프로젝트를 원활히 진행하기 위해 여러 단계로 나누어 구현해야 한다. 그 과정에서 일정 관리, 역할 분담, 의사 결정 등 프로젝트 관리 능력이 향상된다.
 
 ## 요구사항 정의서
-(...채울 예정)
+![Alt text](https://raw.githubusercontent.com/909ma/ATM-System-using-by-C-Language/main/%EC%A0%9C%EC%B6%9C%20%ED%8C%8C%EC%9D%BC%20%EA%B4%80%EB%A6%AC/1_%EA%B9%80%EC%8B%A0%ED%98%81_%EC%84%9C%EC%A0%95%EB%B9%88_%EC%95%88%EA%B5%90%EC%84%9D_%EC%95%88%ED%9A%A8%EC%A0%95_%EC%9E%A5%EB%8C%80%EA%B1%B4_%EC%B5%9C%EC%9D%80%EC%A7%80/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.JPG)
 
 ## Gantt Chart
-(...채울 예정)
+![Alt text](https://raw.githubusercontent.com/909ma/ATM-System-using-by-C-Language/main/%EC%A0%9C%EC%B6%9C%20%ED%8C%8C%EC%9D%BC%20%EA%B4%80%EB%A6%AC/1_%EA%B9%80%EC%8B%A0%ED%98%81_%EC%84%9C%EC%A0%95%EB%B9%88_%EC%95%88%EA%B5%90%EC%84%9D_%EC%95%88%ED%9A%A8%EC%A0%95_%EC%9E%A5%EB%8C%80%EA%B1%B4_%EC%B5%9C%EC%9D%80%EC%A7%80/Gantt%20%EC%B0%A8%ED%8A%B8.JPG)
 
 ## 프로젝트 일정 관리
-(...채울 예정)
-
-## 프로젝트 반성점
-(...채울 예정)
+![Alt text](https://raw.githubusercontent.com/909ma/ATM-System-using-by-C-Language/main/%EC%A0%9C%EC%B6%9C%20%ED%8C%8C%EC%9D%BC%20%EA%B4%80%EB%A6%AC/1_%EA%B9%80%EC%8B%A0%ED%98%81_%EC%84%9C%EC%A0%95%EB%B9%88_%EC%95%88%EA%B5%90%EC%84%9D_%EC%95%88%ED%9A%A8%EC%A0%95_%EC%9E%A5%EB%8C%80%EA%B1%B4_%EC%B5%9C%EC%9D%80%EC%A7%80/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%9D%BC%EC%A0%95%20%EA%B4%80%EB%A6%AC.JPG)
+## 프로젝트 개선점
+* 데이터 위조 및 변조, 탈취에 취약하다.  
+* csv형식의 파일을 데이터베이스로 쓰기에 같은 단점을 공유한다.  
+* 휴먼에러(Human Error)에 대한 대처방법이 부족하다.
