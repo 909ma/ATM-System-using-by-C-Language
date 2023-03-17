@@ -6,6 +6,7 @@
 #include <string.h>
 #include "ExtraFunc.h"
 #include "GiftStruct.h"
+#include "VoiceCheck.h"
 
 int input_num;
 int cash;
@@ -23,11 +24,14 @@ int TrafficCard(Person* person)
 	}
 	else
 	{
-		printf("\n현재잔액은 %d원입니다.\n", person->NowMoney);
+        PlaySound(TEXT(".\\BankVoice\\MenuChoice.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		printf("\n현재잔액은 %d원입니다.\n", person->NowMoney);       
 		printf("\n\n원하시는 메뉴를 선택해주십시오\n");
 		printf("\n\n 1. 충전 2. 환불  3. 취소\n");
 		printf("\n\n 입력 : ");
 		scanf("%d", &option);
+        checkKey(option);
+
 		switch (option)
 		{
 		case 1:
@@ -63,6 +67,7 @@ int TrafficCard(Person* person)
 		}
 		case 3:
 		{
+            PlaySound(TEXT(".\\BankVoice\\WorkCancel.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			printf("\n거래가 취소되었습니다.\n");
 			break;
 		}
@@ -221,6 +226,7 @@ int giftCards(gift_struct* gift) {
         cash_balance = cash_balance - num_10000 * 10000 - num_50000 * 50000;
         printf(" \t\t\t 잔   액 : %d원\n", cash_balance);
         gift->balance = cash_balance;
+        PlaySound(TEXT(".\\BankVoice\\WorkComplete.wav"), NULL, SND_FILENAME | SND_ASYNC);
         printf("\n\t\t정상적으로 거래가 완료되었습니다.\n");
         printf(" ==================================\n");
         if (BackToMenu() == 1)

@@ -1,8 +1,10 @@
 #pragma once
 #include<stdio.h>
 #include <stdlib.h>
+#include <windows.h>
 #include <string.h>
 #include "ExtraFunc.h"
+#include "VoiceCheck.h"
 
 void SaveData(char* filename, Person* people, int max) //출금 후 수정된 잔액 정보로 재저장
 {
@@ -35,8 +37,10 @@ void deposit_func(char* filename, Person* people, int max)
 	do
 	{
 	REDEP:
+		PlaySound(TEXT(".\\BankVoice\\InputAccOrCardNum.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		printf("\n입금할 계좌번호 입력: ");
 		scanf("%d", &AccNum);
+		checkKey(AccNum);
 		for (int i = 0; i < max - 1; i++)
 		{
 			if (people[i].AccountNumber == AccNum) // 고객의 계좌번호와 입력한 계좌번호가 일치한 경우
@@ -46,22 +50,30 @@ void deposit_func(char* filename, Person* people, int max)
 				while (pw_count < 3)
 				{
 					int pw;
+					PlaySound(TEXT(".\\BankVoice\\InputPw.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					printf("\n비밀번호를 입력하시오 : ");
 					scanf("%d", &pw);
+					checkKey(pw);
 
 					if (people[i].AccountPW == pw)
 						break;
 					else
 					{
 						pw_count++;
-						if (pw_count < 3)
+						if (pw_count < 3) 
+						{
+							PlaySound(TEXT(".\\BankVoice\\CheckPw.wav"), NULL, SND_FILENAME | SND_ASYNC);
 							printf("\n비밀번호가 틀렷습니다. 다시 입력하세요(%d회 오류)\n", pw_count);
-						else
+						}						
+						else 
+						{
 							break;
+						}
 					}
 				}
 				if (pw_count == 3)
 				{
+					PlaySound(TEXT(".\\BankVoice\\PwErr.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					printf("\n비밀번호를 3회이상 잘못 입력하셨습니다. 프로그램을 종료합니다.\n");
 					exit(0);
 				}
@@ -94,8 +106,10 @@ void withdraw_func(char* filename, Person* people, int max)
 	do
 	{
 	REWITH:
+		PlaySound(TEXT(".\\BankVoice\\InputAccOrCardNum.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		printf("\n출금할 계좌번호 입력: ");
 		scanf("%d", &AccNum);
+		checkKey(AccNum);
 		for (int i = 0; i < max - 1; i++)
 		{
 			if (people[i].AccountNumber == AccNum) // 고객의 계좌번호와 입력한 계좌번호가 일치한 경우
@@ -105,22 +119,30 @@ void withdraw_func(char* filename, Person* people, int max)
 				while (pw_count < 3)
 				{
 					int pw;
+					PlaySound(TEXT(".\\BankVoice\\InputPw.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					printf("\n비밀번호를 입력하시오 : ");
 					scanf("%d", &pw);
+					checkKey(pw);
 
 					if (people[i].AccountPW == pw)
 						break;
 					else
 					{
 						pw_count++;
-						if (pw_count < 3)
+						if (pw_count < 3) 
+						{
+							PlaySound(TEXT(".\\BankVoice\\CheckPw.wav"), NULL, SND_FILENAME | SND_ASYNC);
 							printf("\n비밀번호가 틀렷습니다. 다시 입력하세요(%d회 오류)\n", pw_count);
-						else
+						}
+						else 
+						{
 							break;
+						}
 					}
 				}
 				if (pw_count == 3)
 				{
+					PlaySound(TEXT(".\\BankVoice\\PwErr.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					printf("\n비밀번호를 3회이상 잘못 입력하셨습니다. 프로그램을 종료합니다.\n");
 					exit(0);
 				}
@@ -161,14 +183,22 @@ int ViewMyCash_func(char* filename, Person* people, int max)
 	printf("\n");
 	printf("   ---------------------------------------\n");
 	printf("        \n");
-	printf("\n보이스피싱 관련 연락을 받으셨나요? (예/아니오): ");
-	scanf("%s", answer);
 
-	if (strcmp(answer, "아니오") != 0)
+	if (voicefishing() == 1)
+		return;
+	//PlaySound(TEXT(".\\BankVoice\\phishingCheck.wav"), NULL, SND_FILENAME | SND_ASYNC);
+	//printf("\n보이스피싱 관련 연락을 받으셨나요? (1. 예 2.아니오 입력): ");
+	//scanf("%s", answer);
+	//checkKey(answer);
+
+	/*if (strcmp(answer, "아니오") != 0)
 	{
 		printf("\n보이스피싱 방지를 위해 종료합니다. 이용해주셔서 감사합니다.\n");
+		PlaySound(TEXT(".\\BankVoice\\WorkCancel.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		Sleep(3000);
+		PlaySound(TEXT(".\\BankVoice\\CheckAndBye.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		return 1;
-	}
+	}*/
 
 	int CardNumber, AccountNumber, AccountPW, state = -1, temp;
 	int retry_count = 0; // 재시도 횟수를 저장할 변수
@@ -182,14 +212,19 @@ int ViewMyCash_func(char* filename, Person* people, int max)
 		printf("   ---------------------------------------\n");
 		printf("\n");
 
+		PlaySound(TEXT(".\\BankVoice\\InputAccOrCardNum.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
 		printf("\n카드번호를 입력해주세요. (4자리) : ");
 		scanf("%d", &CardNumber);
 
 		printf("\n계좌번호를 입력해주세요. (3자리) : ");
 		scanf("%d", &AccountNumber);
+		checkKey(AccountNumber);
 
+		PlaySound(TEXT(".\\BankVoice\\InputPw.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		printf("\n비밀번호를 입력해주세요. (4자리) : ");
 		scanf("%d", &AccountPW);
+		checkKey(AccountPW);
 
 		for (int i = 0; i < max-1; i++) {
 			if (people[i].CardNumber == CardNumber) {
@@ -211,8 +246,12 @@ int ViewMyCash_func(char* filename, Person* people, int max)
 
 			retry_count++;
 
-			if (retry_count >= 3) {
+			if (retry_count >= 3) 
+			{
 				printf("\n3회 이상 잘못된 정보를 입력하셨습니다. 이용해주셔서 감사합니다.\n");
+				PlaySound(TEXT(".\\BankVoice\\WorkCancle.wav"), NULL, SND_FILENAME | SND_ASYNC);
+				Sleep(3000);
+				PlaySound(TEXT(".\\BankVoice\\CheckAndBye.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				return 1;
 			}
 		}
@@ -235,10 +274,16 @@ int ViewMyCash_func(char* filename, Person* people, int max)
 int search(char* filename, Person* people, Person* person, int max) {
 	int accnum, acpw;
 	int i = 1, j;
+	PlaySound(TEXT(".\\BankVoice\\InputAccOrCardNum.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	printf("\n\n계좌번호를 입력하세요 : ");
 	scanf("%d", &accnum);
+	checkKey(accnum);
+
+	PlaySound(TEXT(".\\BankVoice\\InputPw.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	printf("\n\n비밀번호를 입력하세요 : ");
 	scanf("%d", &acpw);
+	checkKey(acpw);
+
 	read_csv_file("people.csv", people, max - 1);
 	for (j = 0; j < max - 1; j++)
 	{
@@ -256,9 +301,12 @@ view:
 		{
 			while (i < 3)
 			{
+				PlaySound(TEXT(".\\BankVoice\\CheckPw.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				printf("\n\n비밀번호를 %d회 틀렸습니다.\n", i);
 				if (i < 3) printf("다시 입력하세요\n");
 				scanf("%d", &acpw);
+				checkKey(acpw);
+
 				if (person->AccountPW == acpw)
 				{
 					goto view;
@@ -271,6 +319,12 @@ view:
 	if (i == 3)
 	{
 		printf("\n\n비밀번호를 %d회 틀렸습니다\n", i);
+		PlaySound(TEXT(".\\BankVoice\\PwErr.wav"), NULL, SND_FILENAME | SND_ASYNC);		
+		Sleep(2000);
+		PlaySound(TEXT(".\\BankVoice\\WorkCancel.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		Sleep(3000);
+		PlaySound(TEXT(".\\BankVoice\\CheckAndBye.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
 		return 1;
 	}
 	else

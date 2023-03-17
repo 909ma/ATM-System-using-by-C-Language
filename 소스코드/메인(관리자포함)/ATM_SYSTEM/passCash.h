@@ -5,7 +5,7 @@
 #include<string.h>
 #include"PersonStruct.h"
 #include"ViewAccount.h"
-#include"VoiceStruct.h"
+#include"VoiceCheck.h"
 #include"ExtraFunc.h"
 #include"User_Function.h"
 #include"myAccountInfo.h"//변수랑 내 계좌 조회 기능 담음
@@ -48,12 +48,17 @@ void passCash(state1, state2){
 	scanf_s("%d", &yn);
 	if (yn == yes)
 	{
+		PlaySound(TEXT(".\\BankVoice\\WorkComplete.wav"), NULL, SND_FILENAME | SND_ASYNC);		
 		SaveData("people.csv", people, line);
 		printf("\n<이체 후 잔액 : %d원>\n", people[state1].NowMoney);
+
+		PlaySound(TEXT(".\\BankVoice\\CheckAndBye.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		printf("송금이 완료되었습니다. 이용해주셔서 감사합니다.\n");
 	}
 	else if (yn == no)
 	{
+		PlaySound(TEXT(".\\BankVoice\\WorkCancel.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT(".\\BankVoice\\CheckAndBye.wav"), NULL, SND_FILENAME | SND_ASYNC);		
 		printf("송금이 취소되었습니다.\n");
 		printf("이용해주셔서 감사합니다.\n");
 	}

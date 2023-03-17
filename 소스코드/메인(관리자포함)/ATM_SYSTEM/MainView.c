@@ -9,17 +9,22 @@
 #include"Admin_Function.h"
 #include"Addtion_Function.h"
 #include"remit.h"
-
+#include"VoiceCheck.h"
 
 int main()
 {
 	int MenuNum;
 	Person* people = malloc(sizeof(Person) * 100);
 RESHOW:
+	
+	PlaySound(TEXT(".\\BankVoice\\HelloBankMenuChoice.wav"), NULL, SND_FILENAME | SND_ASYNC); //첫인사	
 	showMenu();
 RE:
-	printf("원하는 기능을 선택해주세요 : ");
+	printf("원하시는 거래를 선택하여 주십시오 : ");
+	
 	scanf("%d", &MenuNum);
+	checkKey(MenuNum);//키 입력시 음성 종료
+
 	switch (MenuNum)
 	{
 	case 1:

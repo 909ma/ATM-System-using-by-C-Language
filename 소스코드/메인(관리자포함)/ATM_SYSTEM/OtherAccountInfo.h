@@ -4,20 +4,28 @@
 #include<string.h>
 #include"PersonStruct.h"
 #include"ViewAccount.h"
-#include"VoiceStruct.h"
+#include"VoiceCheck.h"
 #include"ExtraFunc.h"
 #include"User_Function.h"
 #include"myAccountInfo.h"//변수랑 내 계좌 조회 기능 담음
 #define MAX_NUM 150
 
-int OtherAccountInfo(int lineA,int typeA){
-	read_csv_file("people.csv", people, MAX_NUM);//정보 받아옴
-	for(int i = 0; i < 3; i++){//계좌 입력
+int OtherAccountInfo(int lineA,int typeA)
+{
+	//정보 받아옴
+	read_csv_file("people.csv", people, MAX_NUM);
+
+	//계좌 입력
+	for(int i = 0; i < 3; i++)
+	{
+		PlaySound(TEXT(".\\BankVoice\\InputAccOrCardNum.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		printf("송금 받으실 분의 계좌를 입력하세요.\n");
 		scanf_s("%d", &AccNum);
+		checkKey(AccNum);
+
 		if (AccNum > 999 || AccNum < 0){
 			printf("입력이 잘못되었습니다.\n");
-			if (i == 2){
+			if (i == 2){				
 				printf("세 번 틀리셨습니다. 송금을 중지합니다.\n");
 				return -1;//오류니까 -1 반환
 			}

@@ -103,8 +103,11 @@ void pay_Func()
 RESHOW:
 	payMenu();
 RE:
+	PlaySound(TEXT(".\\BankVoice\\MenuChoice.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	printf("\n원하는 기능 선택 : ");
 	scanf("%d", &MenuNum);
+	checkKey(MenuNum);
+
 	switch (MenuNum)
 	{
 	case 1:
@@ -114,8 +117,11 @@ RE:
 			Fine(&person);
 			change("people.csv", people, &person, line);
 		}
-		else
+		else 
+		{
+			PlaySound(TEXT(".\\BankVoice\\WorkCancel.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			printf("결제가 취소되었습니다.\n");
+		}
 		free(people);
 		if (BackToMenu() == 1)
 			goto RESHOW;
@@ -127,8 +133,11 @@ RE:
 			Utilities(&person);
 			change("people.csv", people, &person, line);
 		}
-		else
+		else 
+		{
+			PlaySound(TEXT(".\\BankVoice\\WorkCancel.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			printf("결제가 취소되었습니다.\n");
+		}
 		free(people);
 		if (BackToMenu() == 1)
 			goto RESHOW;
@@ -154,8 +163,11 @@ void addtion_Func()
 RESHOW:
 	addtionMenu();
 RE:
+	PlaySound(TEXT(".\\BankVoice\\MenuChoice.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	printf("\n원하는 기능 선택 : ");
 	scanf("%d", &MenuNum);
+	checkKey(MenuNum);
+
 	switch (MenuNum)
 	{
 	case 1:
@@ -165,8 +177,13 @@ RE:
 			TrafficCard(&person);
 			change("people.csv", people, &person, line);
 		}
-		else
+		else 
+		{
+			PlaySound(TEXT(".\\BankVoice\\WorkCancel.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			Sleep(2000);
+			PlaySound(TEXT(".\\BankVoice\\CheckAndBye.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			printf("결제가 취소되었습니다.\n");
+		}
 		free(people);
 		if (BackToMenu() == 1)
 			goto RESHOW;

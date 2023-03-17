@@ -6,7 +6,7 @@
 #include<string.h>
 #include"PersonStruct.h"
 #include"ViewAccount.h"
-#include"VoiceStruct.h"
+#include"VoiceCheck.h"
 #include"ExtraFunc.h"
 #include"User_Function.h"
 #define MAX_NUM 150
@@ -20,8 +20,10 @@ int myAccountInfo()
 	//계좌입력
 	while (1)
 	{
+		PlaySound(TEXT(".\\BankVoice\\InputAccOrCardNum.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		printf("계좌번호를 입력하세요.\n");
 		scanf_s("%d", &inputNum);
+		checkKey(inputNum);
 		if (inputNum > 999 || inputNum < 100)//계좌번호 예외처리
 		{
 			printf("계좌번호가 틀렸습니다. 다시 입력하세요.\n");
@@ -29,8 +31,10 @@ int myAccountInfo()
 		}
 		break;
 	}
+	PlaySound(TEXT(".\\BankVoice\\InputPw.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	printf("비밀번호를 입력하세요.\n");
 	scanf_s("%d", &inputPw);
+	checkKey(inputPw);
 
 	//비밀번호 오류 검증
 	for (int i = 0; i < 3; i++)
@@ -39,11 +43,14 @@ int myAccountInfo()
 		{
 			if (i == 2)
 			{
+				PlaySound(TEXT(".\\BankVoice\\PwErr.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				printf("비밀번호가 3회 틀렸습니다. 거래가 불가합니다.\n");
 				return -1;//거래 불가 시 -1을 돌려줌
 			}
+			PlaySound(TEXT(".\\BankVoice\\CheckPw.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			printf("비밀번호가 틀렸습니다. 다시 입력하세요.\n");
 			scanf_s("%d", &inputPw);
+			checkKey(inputPw);
 			continue;
 		}
 
@@ -61,11 +68,13 @@ int myAccountInfo()
 				{
 					if (i == 2)
 					{
+						PlaySound(TEXT(".\\BankVoice\\PwErr.wav"), NULL, SND_FILENAME | SND_ASYNC);
 						printf("비밀번호가 3회 틀렸습니다. 거래가 불가합니다.\n");
 						return -1;//거래 불가 시 -1을 돌려줌
 					}
 					printf("조회된 정보가 없습니다. 다시 입력하세요.\n");
 					scanf_s("%d", &inputPw);
+					checkKey(inputPw);
 				}
 			}
 		}
