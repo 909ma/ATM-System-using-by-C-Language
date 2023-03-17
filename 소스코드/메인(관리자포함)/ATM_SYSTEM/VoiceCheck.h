@@ -8,7 +8,7 @@
 
 void checkKey(int key) {
 	
-	PlaySound(TEXT(".\\BankVoice\\HelloBankMenuChoice.wav"), NULL, SND_FILENAME | SND_ASYNC); //첫인사	
+	//PlaySound(TEXT(".\\BankVoice\\HelloBankMenuChoice.wav"), NULL, SND_FILENAME | SND_ASYNC); //첫인사	
 	
 	if (key != NULL)
 	{
