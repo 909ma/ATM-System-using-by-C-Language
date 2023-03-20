@@ -1,0 +1,39 @@
+﻿  MainView.c
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\ViewAccount.h(54,16): warning C4013: 'getTotalLine'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\VoiceCheck.h(13,17): warning C4047: '!=': 'int'의 간접 참조 수준이 'void *'과(와) 다릅니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(80,6): warning C4102: 'RE': 참조되지 않은 레이블입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(34,6): warning C4101: 'AccountNumber' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(34,21): warning C4101: 'NowMoney' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(103,6): warning C4101: 'AccountNumber' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(103,32): warning C4101: 'NowMoney' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(103,21): warning C4101: 'AccountPW' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(188,3): warning C4033: 'ViewMyCash_func'은(는) 값을 반환해야 합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(178,7): warning C4101: 'answer' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(203,56): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(74,3): warning C4013: 'CreatAccount'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(75,3): warning C4013: 'MergeAccount'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(76,3): warning C4013: 'NameChange'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(81,3): warning C4013: 'CloseAccount'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(59,6): warning C4101: 'menuSelect' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(147,3): warning C4013: 'main'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(98,6): warning C4101: 'menuSelect' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(177,4): warning C4013: 'TrafficCard'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(192,3): warning C4013: 'GiftCardFunc'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(158,6): warning C4101: 'menuSelect' :참조되지 않은 지역 변수입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(216,10): warning C4013: 'giftCards'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Menu.h(217,3): warning C4013: 'register_giftCards'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\Admin_Function.h(29,5): warning C4013: 'gets'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\passCash.h(25,35): warning C4098: 'passCash': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\passCash.h(35,35): warning C4098: 'passCash': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\passCash.h(42,9): warning C4477: 'printf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'int *'입니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\passCash.h(42,9): warning C4313: 'printf': 서식 문자열의 '%d'이(가) int *' 형식의 인수 2과(와) 충돌합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\remit.h(34,4): warning C4033: 'remit'은(는) 값을 반환해야 합니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\remit.h(40,3): warning C4033: 'remit'은(는) 값을 반환해야 합니다.
+  코드를 생성하고 있습니다.
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\ExtraFunc.h(168): warning C4715: 'BackToMenu': 모든 제어 경로에서 값을 반환하지는 않습니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\User_Function.h(273): warning C4715: 'ViewMyCash_func': 모든 제어 경로에서 값을 반환하지는 않습니다.
+C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\remit.h(70): warning C4715: 'remit': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  All 51 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  ATM_SYSTEM.vcxproj -> C:\Users\SJB\Desktop\KB2023\ATM-System-using-by-C-Language\소스코드\메인(관리자포함)\ATM_SYSTEM\x64\Release\ATM_SYSTEM.exe
